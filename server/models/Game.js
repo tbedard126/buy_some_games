@@ -25,13 +25,13 @@ const gameSchema = new Schema({
   //   min: 0,
   //   default: 0
   // },
-  seller: {
-      type: Schema.Types.ObjectId,
-      ref: 'User'
-  },
   category: {
     type: String,
     enum: ['Nintendo', 'Super Nintendo', 'Sega Genesis', 'Nintendo 64'],
+  },
+  seller: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
   }
 });
 

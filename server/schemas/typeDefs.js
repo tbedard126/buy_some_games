@@ -40,20 +40,24 @@ const typeDefs = gql`
 
 ######## server/resolvers -- these are not our ones currently
   type Query {
-    categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
-    user: User
-    order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
+    games: [Games]
+    gamesByCtgy(category: String): [Games]
+    game(_id: ID!): Game
+    seller(_id: ID!): User
+    ### GET ALL ORDERS (once that function is written) ###
+    ### **nice to have** gets all users ###
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
+    addUser(username: String!, email: String!, password: String!): Auth
+    addGame(name: String!, description: String, imgUrl: String, price: Float!, category: String!, seller: ID): Game
+    updateUser(username: String, email: String, password: String): User
+    ### update game ###
+    removeGame(_id: ID!): Game
+    ### remove user ###
     login(email: String!, password: String!): Auth
+      ### will implement once we add Order ###
+#       addOrder(products: [ID]!): Order
   }
 `;
 

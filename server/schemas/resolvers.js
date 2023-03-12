@@ -1,125 +1,85 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Product, Category, Order } = require('../models');
+const { User, Game } = require('../models');    // will eventually import Order as well
 const { signToken } = require('../utils/auth');
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+// const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');    // will use this if we get to Stripe
 
 const resolvers = {
   Query: {
-    categories: async () => {
-      return await Category.find();
+    // get ALL games in DB
+    games: async () => {
+      return await Game.find();
     },
-    products: async (parent, { category, name }) => {
-      const params = {};
-
-      if (category) {
-        params.category = category;
-      }
-
-      if (name) {
-        params.name = {
-          $regex: name
-        };
-      }
-
-      return await Product.find(params).populate('category');
+    // get ALL games by category
+    gamesByCtgy: async (parent, { category }) => {
+      return await Game.find({ category: category }).populate('seller');
     },
-    product: async (parent, { _id }) => {
-      return await Product.findById(_id).populate('category');
+    // get ONE game by ID (will eventualy have to grab the ID from params)
+    game: async (parent, { gameId }) => {
+      return await Game.findById(gameId).populate('seller');
     },
-    user: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
-          populate: 'category'
-        });
-
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-
-        return user;
-      }
-
-      throw new AuthenticationError('Not logged in');
+    // get ONE seller (User) by ID
+    seller: async (parent, { userId }) => {
+      return await User.findById(userId).populate('games');
     },
-    order: async (parent, { _id }, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
-          populate: 'category'
-        });
-
-        return user.orders.id(_id);
-      }
-
-      throw new AuthenticationError('Not logged in');
-    },
-    checkout: async (parent, args, context) => {
-      const url = new URL(context.headers.referer).origin;
-      const order = new Order({ products: args.products });
-      const line_items = [];
-
-      const { products } = await order.populate('products');
-
-      for (let i = 0; i < products.length; i++) {
-        const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`]
-        });
-
-        const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: products[i].price * 100,
-          currency: 'usd',
-        });
-
-        line_items.push({
-          price: price.id,
-          quantity: 1
-        });
-      }
-
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        line_items,
-        mode: 'payment',
-        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/`
-      });
-
-      return { session: session.id };
-    }
+    // GET all orders (by one user, buyer OR seller -- so this may need to be 2 separate routes),
+    // ***nice to have**  get all users (sellers -- a new page, where they can sort by rating),
   },
   Mutation: {
+    // CREATE one user -- currnetly verbatim for example
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
 
       return { token, user };
     },
-    addOrder: async (parent, { products }, context) => {
-      console.log(context);
+    // CREATE one game (will need a form for this -- also updates the seller's games array)
+    addGame: async (parent, args, context) => {
       if (context.user) {
-        const order = new Order({ products });
+        const game = await Game.create({
+          ...args,  //is spread necessary here? it may just copy
+          seller: context.user._id});
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { games: game._id }}
+        );
 
-        return order;
+        return game;
       }
-
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('Only sellers can list games; login or sign-up first!');
     },
+    // UPDATE user (would use the signup form logic)
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, { new: true });
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('Must be logged in to update your biz');
     },
-    updateProduct: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
+    // UPDATE one game by ID (will have to grab ID from params)
+        // this one is incomplete
+    // updateGame: async (parent, args) => {
+    //   return await Game.findByIdAndUpdate(args.gameId, args, { new: true }); //not quite right -- ID should be from params
+    // },
 
-      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+    // DELETE one game (also remove it from User's games array)
+    removeGame: async (parent, { gameId }, context) => {
+      if (context.user) {
+        const game = await Game.findByIdAndDelete(gameId);
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { games: game._id } }
+        );
+
+        return game;
+      }
+      throw new AuthenticationError('You need to be logged in to unlist your game');
     },
+
+    // DELETE one user (i.e. delete account -- should also 'cascade' delete the games in the assoc. array),
+
+    // LOGIN (i.e. find one user and give JWT) -- keeping this one verbatim from the example
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -137,28 +97,21 @@ const resolvers = {
 
       return { token, user };
     }
+    // CREATE ORDER (from cart, which holds array of games (id) to buy -- once order submitted, THEN create)
+      // this is the one from the example, so when we employ it we'll need to change some pieces, but the general logic should be similar
+        // addOrder: async (parent, { products }, context) => {
+        //   console.log(context);
+        //   if (context.user) {
+        //     const order = new Order({ products });
+
+        //     await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+
+        //     return order;
+        //   }
+
+        //   throw new AuthenticationError('Not logged in');
+        // },
   }
 };
-
-// queries
-    // get all games (home page)
-    // get all games BY SPECIFIC CATEGORY (home page)
-    // get one game (one game)
-
-    // get one user (also grab their games array)
-    // ***nice to have**      // get all users (sellers -- a new page, where they can sort by rating)
-
-    // get all orders (connected to one user)
-
-// mutations
-    // CREATE one user (similar to sign up)
-    // UPDATE user (would use thes signup form logic)
-    // DELETE one user (i.e. delete account -- should also 'cascade' delete the games in the assoc. array)
-
-    // CREATE one game (will need a form for this)
-    // UPDATE one game (probably just price -- probly can use the same form as CREATE game)
-    // DELETE one game (remember to remove it from User's games array)
-
-    // CREATE ORDER (from cart, which holds array of games (id) to buy -- once order submitted, THEN create)
 
 module.exports = resolvers;

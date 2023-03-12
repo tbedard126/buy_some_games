@@ -9,7 +9,8 @@ const gameSchema = new Schema({
     trim: true
   },
   description: {
-    type: String
+    type: String,
+    trim: true
   },
   imgUrl: {
     type: String,
@@ -28,6 +29,7 @@ const gameSchema = new Schema({
   category: {
     type: String,
     enum: ['Nintendo', 'Super Nintendo', 'Sega Genesis', 'Nintendo 64'],
+    required: true
   },
   seller: {
       type: Schema.Types.ObjectId,

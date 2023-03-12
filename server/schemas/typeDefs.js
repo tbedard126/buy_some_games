@@ -1,44 +1,45 @@
 const { gql } = require('apollo-server-express');
 
+// may want to add 'quantity' field to Game type
+
+// may want to add 'rating' and 'logoUrl' fields to User (seller)
+
+
 const typeDefs = gql`
-  type Category {
-    _id: ID
-    name: String
-  }
-
-  type Product {
-    _id: ID
-    name: String
+  type Game {
+    _id: ID!
+    name: String!
     description: String
-    image: String
-    quantity: Int
-    price: Float
-    category: Category
-  }
-
-  type Order {
-    _id: ID
-    purchaseDate: String
-    products: [Product]
+    imgUrl: String
+    price: Float!
+    category: String!
+    seller: User
   }
 
   type User {
-    _id: ID
-    firstName: String
-    lastName: String
-    email: String
-    orders: [Order]
+    _id: ID!
+    userame: String!
+    email: String!
+    games: [Game]
   }
 
+#  type Order {
+#    _id: ID
+#    purchaseDate: String
+#    games: [Game]
+#  }
+
+####### Stripe
   type Checkout {
     session: ID
   }
-
+####### JWT
   type Auth {
     token: ID
     user: User
   }
 
+######## server/resolvers
   type Query {
     categories: [Category]
     products(category: ID, name: String): [Product]

@@ -4,7 +4,6 @@ const { gql } = require('apollo-server-express');
 
 // may want to add 'rating' and 'logoUrl' fields to User (seller)
 
-
 const typeDefs = gql`
   type Game {
     _id: ID!
@@ -39,7 +38,7 @@ const typeDefs = gql`
     user: User
   }
 
-######## server/resolvers
+######## server/resolvers -- these are not our ones currently
   type Query {
     categories: [Category]
     products(category: ID, name: String): [Product]

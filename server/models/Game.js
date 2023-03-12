@@ -11,7 +11,7 @@ const gameSchema = new Schema({
   description: {
     type: String
   },
-  image: {
+  imgUrl: {
     type: String,
     // give a default 'placeholder' img
   },

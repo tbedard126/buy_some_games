@@ -2,18 +2,14 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const Order = require('./Order');
+// const Order = require('./Order');  // we may need this if we get far enough
 
 const userSchema = new Schema({
-  firstName: {
+  userame: {
     type: String,
     required: true,
-    trim: true
-  },
-  lastName: {
-    type: String,
-    required: true,
-    trim: true
+    trim: true,
+    unique: true
   },
   email: {
     type: String,
@@ -23,9 +19,17 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    minlength: 5
+    minLength: 8,
+    maxLength: 25
   },
-  orders: [Order.schema]
+  games: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Game'
+    }
+  ]
+  // rating field if we get far enough,
+  // logoUrl (nice to have / stretch)
 });
 
 // set up pre-save middleware to create password

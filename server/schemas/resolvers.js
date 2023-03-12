@@ -1,13 +1,29 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Product, Category, Order } = require('../models');
+const { User, Game } = require('../models');    // will eventually import Order as well
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
-    categories: async () => {
-      return await Category.find();
+    // get ALL games in DB
+    allGames: async () => {
+      return await Game.find();
     },
+    // get ALL games by category
+    gamesByCtgy: async (parent, { category }) => {
+      return await Game.find({ category: category }).populate('seller');
+    },
+    // get ONE game by ID (will eventualy have to grab the ID from params)
+    game: async (parent, { gameId }) => {
+      return await Game.findById(gameId).populate('seller');
+    },
+
+    // get one user (also grab their games array)
+    // ***nice to have**      // get all users (sellers -- a new page, where they can sort by rating)
+
+    // get all orders (connected to one user)
+
+
     products: async (parent, { category, name }) => {
       const params = {};
 
@@ -140,15 +156,7 @@ const resolvers = {
   }
 };
 
-// queries
-    // get all games (home page)
-    // get all games BY SPECIFIC CATEGORY (home page)
-    // get one game (one game)
 
-    // get one user (also grab their games array)
-    // ***nice to have**      // get all users (sellers -- a new page, where they can sort by rating)
-
-    // get all orders (connected to one user)
 
 // mutations
     // CREATE one user (similar to sign up)

@@ -36,7 +36,7 @@ const resolvers = {
     addGame: async (parent, args, context) => {
       if (context.user) {
         const game = await Game.create({
-          ...args, 
+          ...args,  //is spread necessary here? it may just copy
           seller: context.user._id});
 
         await User.findOneAndUpdate(
@@ -48,43 +48,38 @@ const resolvers = {
       }
       throw new AuthenticationError('Only sellers can list games; login or sign-up first!');
     },
-    
-// mutations
-
-    // UPDATE user (would use thes signup form logic)
-    // DELETE one user (i.e. delete account -- should also 'cascade' delete the games in the assoc. array)
-
-
-    // UPDATE one game (probably just price -- probly can use the same form as CREATE game)
-    // DELETE one game (remember to remove it from User's games array)
-
-    // CREATE ORDER (from cart, which holds array of games (id) to buy -- once order submitted, THEN create)
-
-
-    addOrder: async (parent, { products }, context) => {
-      console.log(context);
-      if (context.user) {
-        const order = new Order({ products });
-
-        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
-
-        return order;
-      }
-
-      throw new AuthenticationError('Not logged in');
-    },
+    // UPDATE user (would use the signup form logic)
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, { new: true });
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('Must be logged in to update your biz');
     },
-    updateProduct: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
+    // UPDATE one game by ID (will have to grab ID from params)
+        // this one is incomplete
+    // updateGame: async (parent, args) => {
+    //   return await Game.findByIdAndUpdate(args._id, args, { new: true }); //not quite right -- ID should be from params
+    // },
 
-      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+    // DELETE one game (also remove it from User's games array)
+    removeGame: async (parent, { gameId }, context) => {
+      if (context.user) {
+        const game = await Game.findByIdAndDelete(gameId);
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { games: game._id } }
+        );
+
+        return game;
+      }
+      throw new AuthenticationError('You need to be logged in to unlist your game');
     },
+
+    // DELETE one user (i.e. delete account -- should also 'cascade' delete the games in the assoc. array),
+
+    // LOGIN (i.e. find one user and give JWT) -- keeping this one verbatim from the example
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -102,6 +97,20 @@ const resolvers = {
 
       return { token, user };
     }
+    // CREATE ORDER (from cart, which holds array of games (id) to buy -- once order submitted, THEN create)
+      // this is the one from the example, so when we employ it we'll need to change some pieces, but the general logic should be similar
+        // addOrder: async (parent, { products }, context) => {
+        //   console.log(context);
+        //   if (context.user) {
+        //     const order = new Order({ products });
+
+        //     await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+
+        //     return order;
+        //   }
+
+        //   throw new AuthenticationError('Not logged in');
+        // },
   }
 };
 

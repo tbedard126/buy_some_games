@@ -1,0 +1,40 @@
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
+
+const gameSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  description: {
+    type: String
+  },
+  image: {
+    type: String,
+    // give a default 'placeholder' img
+  },
+  price: {
+    type: Number,
+    required: true,
+    min: 0.99
+  },
+  // quantity: {          // this will always be 1
+  //   type: Number,
+  //   min: 0,
+  //   default: 0
+  // },
+  seller: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+  },
+  category: {
+    type: String,
+    enum: ['Nintendo', 'Super Nintendo', 'Sega Genesis', 'Nintendo 64'],
+  }
+});
+
+const Game = mongoose.model('Game', gameSchema);
+
+module.exports = Game;

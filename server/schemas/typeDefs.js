@@ -40,7 +40,7 @@ const typeDefs = gql`
 
 ######## server/resolvers -- these are not our ones currently
   type Query {
-    allGames: [Games]
+    games: [Games]
     gamesByCtgy(category: String): [Games]
     game(_id: ID!): Game
     seller(_id: ID!): User
@@ -49,11 +49,15 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
+    addUser(username: String!, email: String!, password: String!): Auth
+    addGame(name: String!, description: String, imgUrl: String, price: Float!, category: String!, seller: ID): Game
+    updateUser(username: String, email: String, password: String): User
+    ### update game ###
+    removeGame(_id: ID!): Game
+    ### remove user ###
     login(email: String!, password: String!): Auth
+      ### will implement once we add Order ###
+#       addOrder(products: [ID]!): Order
   }
 `;
 

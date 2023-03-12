@@ -6,7 +6,7 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     // get ALL games in DB
-    allGames: async () => {
+    games: async () => {
       return await Game.find();
     },
     // get ALL games by category

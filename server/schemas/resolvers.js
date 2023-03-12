@@ -140,4 +140,25 @@ const resolvers = {
   }
 };
 
+// queries
+    // get all games (home page)
+    // get all games BY SPECIFIC CATEGORY (home page)
+    // get one game (one game)
+
+    // get one user (also grab their games array)
+    // ***nice to have**      // get all users (sellers -- a new page, where they can sort by rating)
+
+    // get all orders (connected to one user)
+
+// mutations
+    // CREATE one user (similar to sign up)
+    // UPDATE user (would use thes signup form logic)
+    // DELETE one user (i.e. delete account -- should also 'cascade' delete the games in the assoc. array)
+
+    // CREATE one game (will need a form for this)
+    // UPDATE one game (probably just price -- probly can use the same form as CREATE game)
+    // DELETE one game (remember to remove it from User's games array)
+
+    // CREATE ORDER (from cart, which holds array of games (id) to buy -- once order submitted, THEN create)
+
 module.exports = resolvers;

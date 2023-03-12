@@ -40,12 +40,12 @@ const typeDefs = gql`
 
 ######## server/resolvers -- these are not our ones currently
   type Query {
-    categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
-    user: User
-    order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
+    allGames: [Games]
+    gamesByCtgy(category: String): [Games]
+    game(_id: ID!): Game
+    seller(_id: ID!): User
+    ### GET ALL ORDERS (once that function is written) ###
+    ### **nice to have** gets all users ###
   }
 
   type Mutation {

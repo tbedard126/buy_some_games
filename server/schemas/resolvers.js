@@ -59,7 +59,7 @@ const resolvers = {
     // UPDATE one game by ID (will have to grab ID from params)
         // this one is incomplete
     // updateGame: async (parent, args) => {
-    //   return await Game.findByIdAndUpdate(args._id, args, { new: true }); //not quite right -- ID should be from params
+    //   return await Game.findByIdAndUpdate(args.gameId, args, { new: true }); //not quite right -- ID should be from params
     // },
 
     // DELETE one game (also remove it from User's games array)

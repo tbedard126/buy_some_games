@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Home() {
+export default function Header() {
 
   
     return (
       <div>
-        <p>This is the Home page!</p>
+        <p>This is the Header page!</p>
         
       </div>
     );

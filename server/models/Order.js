@@ -10,7 +10,7 @@
 //   // games: [
 //   //   {
 //   //     type: Schema.Types.ObjectId,
-//   //     ref: 'Games'
+//   //     ref: 'Game'
 //   //   }
 //   // ]
 // });

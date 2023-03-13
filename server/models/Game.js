@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
@@ -6,11 +6,11 @@ const gameSchema = new Schema({
   name: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
   },
   description: {
     type: String,
-    trim: true
+    trim: true,
   },
   imgUrl: {
     type: String,
@@ -19,7 +19,7 @@ const gameSchema = new Schema({
   price: {
     type: Number,
     required: true,
-    min: 0.99
+    min: 0.99,
   },
   // quantity: {          // this will always be 1
   //   type: Number,
@@ -28,15 +28,15 @@ const gameSchema = new Schema({
   // },
   category: {
     type: String,
-    enum: ['Nintendo', 'Super Nintendo', 'Sega Genesis', 'Nintendo 64'],
-    required: true
+    enum: ["Nintendo", "Super Nintendo", "Sega Genesis", "Nintendo 64"],
+    required: true,
   },
   seller: {
-      type: Schema.Types.ObjectId,
-      ref: 'User'
-  }
+    type: String,
+    ref: "User",
+  },
 });
 
-const Game = mongoose.model('Game', gameSchema);
+const Game = mongoose.model("Game", gameSchema);
 
 module.exports = Game;

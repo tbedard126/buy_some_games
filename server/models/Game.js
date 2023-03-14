@@ -11,6 +11,7 @@ const gameSchema = new Schema({
   description: {
     type: String,
     trim: true,
+    default: 'No description for this game'
   },
   imgUrl: {
     type: String,
@@ -33,7 +34,7 @@ const gameSchema = new Schema({
   },
   seller: {
     type: String,     // will change this to ObjectID
-    ref: "User",
+    // ref: "User",
   },
 });
 

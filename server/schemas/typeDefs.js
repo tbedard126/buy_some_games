@@ -11,8 +11,10 @@ const typeDefs = gql`
     description: String
     imgUrl: String
     price: Float!
+    views: Int
     category: String!
-    seller: User
+ #    seller: User    we'll want this once context.user works
+    seller: String
   }
 
   type User {
@@ -57,8 +59,9 @@ const typeDefs = gql`
       imgUrl: String
       price: Float!
       category: String!
-      views: Int
-      seller: ID
+  #      views: Int     we actually wont want this in here, it isn't allowed to be passed in
+  #      seller: ID     we'll want this once context.user works
+      seller: String
     ): Game
     updateUser(username: String, email: String, password: String): User
     ### update game ###

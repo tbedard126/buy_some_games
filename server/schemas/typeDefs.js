@@ -1,9 +1,5 @@
 const { gql } = require("apollo-server-express");
 
-// may want to add 'quantity' field to Game type
-
-// may want to add 'rating' and 'logoUrl' fields to User (seller)
-
 const typeDefs = gql`
   type Game {
     _id: ID!
@@ -11,14 +7,17 @@ const typeDefs = gql`
     description: String
     imgUrl: String
     price: Float!
+    views: Int
     category: String!
-    seller: User
+ #    seller: User    we'll want this once context.user works
+    seller: String
   }
 
   type User {
     _id: ID!
-    userame: String!
+    username: String!      # TYPO HERE #
     email: String!
+ #    password: String!      # is this supposed to be in here? #
     games: [Game]
   }
 
@@ -56,15 +55,28 @@ const typeDefs = gql`
       imgUrl: String
       price: Float!
       category: String!
-      seller: ID
+  #      seller: ID     we'll want this once context.user works
+      seller: String
     ): Game
-    updateUser(username: String, email: String, password: String): User
-    ### update game ###
+
+    updateGame(
+      name: String
+      description: String
+      imgUrl: String
+      price: Float
+      category: String
+    ): Game
     removeGame(_id: ID!): Game
-    ### remove user ###
     login(email: String!, password: String!): Auth
-    ### will implement once we add Order ###
-    #       addOrder(products: [ID]!): Order
+
+  ## still to add:
+  #    addOrder(games: [ID]!): Order
+  #    logout
+  #    increment views (on a game)
+
+  ## still to MAYBE add:
+  #    updateUser(username: String, email: String, password: String): User
+  #    removeUser(_id: ID!): User
   }
 `;
 

@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 // const Order = require('./Order');  // we may need this if we get far enough
 
 const userSchema = new Schema({
-  userame: {
+  username: {       // had to fix this here
     type: String,
     required: true,
     trim: true,

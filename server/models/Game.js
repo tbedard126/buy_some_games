@@ -11,29 +11,30 @@ const gameSchema = new Schema({
   description: {
     type: String,
     trim: true,
+    default: 'No description for this game'
   },
   imgUrl: {
     type: String,
-    // give a default 'placeholder' img
+    default: './images/blank-cartridge.jpg'
   },
   price: {
     type: Number,
     required: true,
     min: 0.99,
   },
-  // quantity: {          // this will always be 1
-  //   type: Number,
-  //   min: 0,
-  //   default: 0
-  // },
+  views: {
+    type: Number,
+    min: 0,
+    default: 0
+  },
   category: {
     type: String,
     enum: ["Nintendo", "Super Nintendo", "Sega Genesis", "Nintendo 64"],
     required: true,
   },
   seller: {
-    type: String,
-    ref: "User",
+    type: String,     // will change this to ObjectID
+    // ref: "User",
   },
 });
 

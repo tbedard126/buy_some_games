@@ -1,8 +1,15 @@
 //imports
 import React, { useState, useEffect } from "react";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 function App() {
-  return <h1>Stuff.</h1>;
+  return (
+    <div>
+      <Header />
+      <Footer />
+    </div>
+  );
 }
 
 export default App;

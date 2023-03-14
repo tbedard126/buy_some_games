@@ -1,0 +1,39 @@
+import React, { useState } from "react";
+
+// imports our components
+import Nav from "./Nav";
+import Cart from "./Cart";
+import Footer from "./Footer";
+import Header from "./Header";
+
+// imports our pages
+import Home from "../pages/Home";
+import Game from "../pages/Game";
+import Login from "../pages/Login";
+import Seller from "../pages/Seller";
+
+export default function PortfolioContainer() {
+  const [currentPage, setCurrentPage] = useState("Home");
+
+  const renderPage = () =>
+    currentPage === "Home" ? (
+      <Home />
+    ) : currentPage === "Game" ? (
+      <Game />
+    ) : currentPage === "Login" ? (
+      <Login />
+    ) : currentPage === "Seller" ? (
+      <Seller />
+    ) : null;
+    
+  const handlePageChange = (page) => setCurrentPage(page);
+
+  return (
+    <div>
+      {/* this is using the current state of the webapge, and also asinging a new state */}
+      <Nav currentPage={currentPage} handlePageChange={handlePageChange} />
+      {/* this is calling the renderpage function to render our selected page */}
+      {renderPage()}
+    </div>
+  );
+}

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-export default function OneItem() {
+export default function Game() {
 
   
     return (
       <div>
-        <p>This is the OneItem page!</p>
+        <p>This is the Game page!</p>
         
       </div>
     );

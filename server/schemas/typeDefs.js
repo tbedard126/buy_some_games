@@ -17,8 +17,9 @@ const typeDefs = gql`
 
   type User {
     _id: ID!
-    userame: String!
+    username: String!      # TYPO HERE #
     email: String!
+ #    password: String!      # is this supposed to be in here? #
     games: [Game]
   }
 
@@ -56,6 +57,7 @@ const typeDefs = gql`
       imgUrl: String
       price: Float!
       category: String!
+      views: Int
       seller: ID
     ): Game
     updateUser(username: String, email: String, password: String): User

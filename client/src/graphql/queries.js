@@ -1,70 +1,44 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_PRODUCTS = gql`
-  query getProducts($category: ID) {
-    products(category: $category) {
-      _id
-      name
+export const QUERY_GAME = gql`
+  query getGame($id: ID!) {
+    game(_id: $id) {
+      category
       description
-      price
-      quantity
-      image
-      category {
-        _id
-      }
-    }
-  }
-`;
-
-export const QUERY_CHECKOUT = gql`
-  query getCheckout($products: [ID]!) {
-    checkout(products: $products) {
-      session
-    }
-  }
-`;
-
-export const QUERY_ALL_PRODUCTS = gql`
-  {
-    products {
-      _id
+      imgUrl
       name
-      description
       price
-      quantity
-      category {
-        name
-      }
+      seller
+      views
     }
   }
 `;
 
-export const QUERY_CATEGORIES = gql`
-  {
-    categories {
-      _id
-      name
-    }
-  }
-`;
-
-export const QUERY_USER = gql`
-  {
-    user {
-      firstName
-      lastName
-      orders {
+export const QUERY_GAMES_BY_CAT = gql`
+  query getGamesByCat($category: String) {
+    gamesByCtgy(category: $category) {
         _id
-        purchaseDate
-        products {
-          _id
-          name
-          description
-          price
-          quantity
-          image
-        }
-      }
+      imgUrl
+      name
+      price
+      seller
     }
   }
 `;
+
+export const QUERY_ALL_GAMES = gql`
+  {
+    games {
+      _id
+      category
+      imgUrl
+      name
+      price
+      seller
+    }
+  }
+`;
+
+// still needed:
+  // games by user (seller)
+  // orders?

@@ -11,34 +11,14 @@ export const LOGIN = gql`
   }
 `;
 
-export const ADD_ORDER = gql`
-  mutation addOrder($products: [ID]!) {
-    addOrder(products: $products) {
-      purchaseDate
-      products {
-        _id
-        name
-        description
-        price
-        quantity
-        category {
-          name
-        }
-      }
-    }
-  }
-`;
-
 export const ADD_USER = gql`
   mutation addUser(
-    $firstName: String!
-    $lastName: String!
+    $username: String!
     $email: String!
     $password: String!
   ) {
     addUser(
-      firstName: $firstName
-      lastName: $lastName
+      username: $username
       email: $email
       password: $password
     ) {
@@ -49,3 +29,37 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_GAME = gql`
+  mutation addGame(
+    $name: String!
+    $description: String
+    $imgUrl: String
+    $price: Float!
+    $category: String!
+    $seller: String   ## this will need to change -- we'll grab the users ObjectID from context
+  ) {
+    addGame(
+      name: $name
+      description: $description
+      imgUrl: $imgUrl
+      price: $price
+      category: $category
+      seller: $seller   ## this will need to change --  we'll grab the users ObjectID from context
+    ) {
+      game {
+        _id
+        name
+      }
+    }
+  }
+`;
+
+// still needed
+  // updateGame
+  // deleteGame
+  // addOrder
+
+  // nice to have?
+    // updateUser
+    // deleteUser

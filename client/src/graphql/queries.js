@@ -17,11 +17,12 @@ export const QUERY_GAME = gql`
 export const QUERY_GAMES_BY_CAT = gql`
   query getGamesByCat($category: String) {
     gamesByCtgy(category: $category) {
-        _id
+      _id
       imgUrl
       name
       price
       seller
+      views
     }
   }
 `;
@@ -35,10 +36,12 @@ export const QUERY_ALL_GAMES = gql`
       name
       price
       seller
+      views
     }
   }
 `;
 
 // still needed:
-  // games by user (seller)
+  // games by user (seller -- could either query the user and populate their games, 
+  //                    OR query games passing in the user
   // orders?

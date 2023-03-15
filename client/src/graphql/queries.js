@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_GAME = gql`
   query getGame($id: ID!) {
@@ -42,6 +42,6 @@ export const QUERY_ALL_GAMES = gql`
 `;
 
 // still needed:
-  // games by user (seller -- could either query the user and populate their games, 
-  //                    OR query games passing in the user
-  // orders?
+// games by user (seller -- could either query the user and populate their games,
+//                    OR query games passing in the user
+// orders?

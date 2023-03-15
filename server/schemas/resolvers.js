@@ -33,34 +33,42 @@ const resolvers = {
       return { token, user };
     },
     // CREATE one game (will need a form for this -- also updates the seller's games array)
+        // addGame: async (parent, args, context) => {
+        //   if (context.user) {
+        //     const game = await Game.create({
+        //       ...args,  //is spread necessary here? it may just copy
+        //       seller: context.user._id});
+
+        //     await User.findOneAndUpdate(
+        //       { _id: context.user._id },
+        //       { $addToSet: { games: game._id }}
+        //     );
+
+        //     return game;
+        //   }
+        //   throw new AuthenticationError('Only sellers can list games; login or sign-up first!');
+        // },
+    // Create one game, without context/auth (interim) -- right now seller is a just a string
     addGame: async (parent, args, context) => {
-      if (context.user) {
-        const game = await Game.create({
-          ...args,  //is spread necessary here? it may just copy
-          seller: context.user._id});
+      // wrap this in a 'has JWT token i.e. isLoggedIn' if statement, with an autherror afterward
+        const game = await Game.create({ ...args });  // this will expand out to be args AND 'seller: context.user._id'
 
         await User.findOneAndUpdate(
-          { _id: context.user._id },
+          { username: 'user1' },      // this will be by ID thru context
           { $addToSet: { games: game._id }}
         );
 
         return game;
-      }
-      throw new AuthenticationError('Only sellers can list games; login or sign-up first!');
     },
-    // UPDATE user (would use the signup form logic)
-    updateUser: async (parent, args, context) => {
-      if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
-      }
 
-      throw new AuthenticationError('Must be logged in to update your biz');
-    },
     // UPDATE one game by ID (will have to grab ID from params)
-        // this one is incomplete
-    // updateGame: async (parent, args) => {
-    //   return await Game.findByIdAndUpdate(args.gameId, args, { new: true }); //not quite right -- ID should be from params
-    // },
+        // THIS IS NON-AUTH VERSION WHERE WE PASS THE NAME IN INSTEAD OF ID
+            // will need to pass in context for auth, wrap it in an 'if' -- though we WONT need any user fields here
+    updateGame: async (parent, args) => {
+      const { name, ...restArgs } = args;
+      const rest = {...restArgs};
+      return await Game.findOneAndUpdate({ name }, rest, { new: true });
+    },
 
     // DELETE one game (also remove it from User's games array)
     removeGame: async (parent, { gameId }, context) => {
@@ -96,7 +104,9 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-    }
+    },
+    // also need a LOGOUT mutation
+
     // CREATE ORDER (from cart, which holds array of games (id) to buy -- once order submitted, THEN create)
       // this is the one from the example, so when we employ it we'll need to change some pieces, but the general logic should be similar
         // addOrder: async (parent, { products }, context) => {
@@ -110,6 +120,16 @@ const resolvers = {
         //   }
 
         //   throw new AuthenticationError('Not logged in');
+        // },
+
+    // UPDATE user (would use the signup form logic)
+    // may not use
+        // updateUser: async (parent, args, context) => {
+        //   if (context.user) {
+        //     return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+        //   }
+
+        //   throw new AuthenticationError('Must be logged in to update your biz');
         // },
   }
 };

@@ -56,7 +56,8 @@ function App() {
                   element={<Game />}
                 />
                 <Route
-                  path="/users/:userId"
+                  // path="/users/:userId"
+                  path="/users"
                   element={<Seller />}
                 />
                 {/* The following 2 routes are not implemented yet*/}

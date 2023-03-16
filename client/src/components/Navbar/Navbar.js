@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Nav } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 export default function Navbar({ currentPage, handlePageChange }) {
   const links = [
-    { name: "Home", href: "#home" },
-    { name: "Profile", href: "#profile" },
-    { name: "Sign In", href: "#signIn" },
-    { name: "Sign Out", href: "#signOut" },
-    { name: "Cart", href: "#cart" },
+    { name: "Home", to: "/" },
+    { name: "Profile", to: "/users" },
+    { name: "Log In", to: "/login" },
+    { name: "Sign Up", to: "/signup" },
+    { name: "Sign Out", to: "#signOut" },
+    { name: "Cart", to: "#cart" },
   ];
 
   return (
     <Nav variant="tabs" activeKey={currentPage} onSelect={handlePageChange}>
       {links.map((link) => (
         <Nav.Item key={link.name}>
-          <Nav.Link eventKey={link.name} href={link.href}>
+          <Link eventKey={link.name} to={link.to}> {/* we may not need eventKey now*/}
             {link.name}
-          </Nav.Link>
+          </Link>
         </Nav.Item>
       ))}
     </Nav>

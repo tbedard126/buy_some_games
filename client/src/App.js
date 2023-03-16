@@ -15,7 +15,7 @@ import Navbar from "./components/Navbar"; // maybe put this inside header -- eit
 import Home from "./pages/Home";
 import Game from "./pages/Game";
 import Seller from "./pages/Seller";
-// import Login from "./pages/Login";  // not yet added
+import Login from "./pages/Login";
 // import Signup from "./pages/Game";  // not yet added
 
 const httpLink = createHttpLink({
@@ -56,15 +56,16 @@ function App() {
                   element={<Game />}
                 />
                 <Route
-                  // path="/users/:userId"
+                  // path="/users/:userId" // will need to change back to this
                   path="/users"
                   element={<Seller />}
                 />
-                {/* The following 2 routes are not implemented yet*/}
-                {/* <Route 
-                path="/login" 
-                element={<Login />} 
-              />
+                <Route
+                  path="/login"
+                  element={<Login />}
+                />
+                {/* The following route isn't implemented yet*/}
+                {/*}
               <Route 
                 path="/signup" 
                 element={<Signup />} 

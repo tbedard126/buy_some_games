@@ -6,7 +6,7 @@ export default function Navbar({ currentPage, handlePageChange }) {
   const links = [
     { name: "Home", to: "/" },
     { name: "Profile", to: "/users" },
-    { name: "Sign In", to: "#signIn" },
+    { name: "Sign In", to: "/login" },
     { name: "Sign Out", to: "#signOut" },
     { name: "Cart", to: "#cart" },
   ];
@@ -15,11 +15,9 @@ export default function Navbar({ currentPage, handlePageChange }) {
     <Nav variant="tabs" activeKey={currentPage} onSelect={handlePageChange}>
       {links.map((link) => (
         <Nav.Item key={link.name}>
-          <Nav.Link>
-            <Link eventKey={link.name} to={link.to}>
-              {link.name}
-            </Link>
-          </Nav.Link>
+          <Link eventKey={link.name} to={link.to}>
+            {link.name}
+          </Link>
         </Nav.Item>
       ))}
     </Nav>

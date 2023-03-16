@@ -47,8 +47,9 @@ const Signup = () => {
           <div className="card-body">
             {data ? (
               <p>
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
+                {/* We may not really need/want anything here because Auth's login function auto-redirects to home */}
+                Your account has been created!{' '}
+                <Link to="/">Go to the homepage.</Link>
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>

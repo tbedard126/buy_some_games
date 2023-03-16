@@ -16,7 +16,7 @@ import Home from "./pages/Home";
 import Game from "./pages/Game";
 import Seller from "./pages/Seller";
 import Login from "./pages/Login";
-// import Signup from "./pages/Game";  // not yet added
+import Signup from "./pages/Signup";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -64,12 +64,10 @@ function App() {
                   path="/login"
                   element={<Login />}
                 />
-                {/* The following route isn't implemented yet*/}
-                {/*}
-              <Route 
-                path="/signup" 
-                element={<Signup />} 
-              /> */}
+                <Route
+                  path="/signup"
+                  element={<Signup />}
+                />
               </Routes>
             </div>
             <Footer />

@@ -13,7 +13,7 @@ db.once("open", async () => {
     {
       name: "Mario RPG",
       description: "Mario RPG",
-      imgUrl: "/images/mario-rpg.jpg",
+      imgUrl: "/images/mario-rpg-snes.jpg",
       price: 20,
       category: "Super Nintendo",
       seller: "",
@@ -29,7 +29,7 @@ db.once("open", async () => {
     {
       name: "Star Fox",
       description: "Star Fox",
-      imgUrl: "/images/starfox.jpg",
+      imgUrl: "/images/starfox-snes.jpg",
       price: 20,
       category: "Super Nintendo",
       seller: "",

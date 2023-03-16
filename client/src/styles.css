@@ -1,0 +1,9 @@
+body {
+    background-color: gray;
+    color: black;
+    font-family: 'Exo 2', sans-serif;
+}
+
+.cardbody {
+    background-color: blueviolet;
+}

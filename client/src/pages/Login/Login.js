@@ -45,6 +45,7 @@ const Login = (props) => {
           <div className="card-body">
             {data ? (
               <p>
+                {/* We may not really need/want anything here because Auth's login function auto-redirects to home */}
                 Logged in!{' '}
                 <Link to="/">Go to the homepage.</Link>
               </p>

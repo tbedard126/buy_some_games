@@ -6,7 +6,7 @@ class AuthService {
   }
 
   loggedIn() {
-    // Checks if there is a saved token and it's still valid
+    // Searches for an validates token
     const token = this.getToken();
     return !!token && !this.isTokenExpired(token);
   }
@@ -23,21 +23,21 @@ class AuthService {
   }
 
   getToken() {
-    // Retrieves the user token from localStorage
+    // Wipe JWT
     return localStorage.getItem('id_token');
   }
 
   login(idToken) {
-    // Saves user token to localStorage
+    // Put JWT in localStorage
     localStorage.setItem('id_token', idToken);
-
+    // Automatically redirects to home
     window.location.assign('/');
   }
 
   logout() {
-    // Clear user token and profile data from localStorage
+    // Wipe JWT
     localStorage.removeItem('id_token');
-    // this will reload the page and reset the state of the application
+    // Automatically redirects to home
     window.location.assign('/');
   }
 }

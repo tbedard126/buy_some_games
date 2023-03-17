@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand>React Bootstrap Header</Navbar.Brand>
+        <Navbar.Brand>Buy some Games!!!</Navbar.Brand>
       </Container>
     </Navbar>
   );

@@ -14,8 +14,8 @@ const resolvers = {
       return await Game.find({ category: category }).populate('seller');
     },
     // get ONE game by ID (will eventualy have to grab the ID from params)
-    game: async (parent, { gameId }) => {
-      return await Game.findById(gameId).populate('seller');
+    game: async (parent, { id }) => {
+      return await Game.findById(id).populate('seller');
     },
     // get ONE seller (User) by ID
     seller: async (parent, { userId }) => {

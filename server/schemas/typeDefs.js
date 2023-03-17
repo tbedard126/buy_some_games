@@ -41,7 +41,7 @@ const typeDefs = gql`
   type Query {
     games: [Game]
     gamesByCtgy(category: String): [Game]
-    game(_id: ID!): Game
+    game(id: ID!): Game
     seller(_id: ID!): User
     ### GET ALL ORDERS (once that function is written) ###
     ### **nice to have** gets all users ###

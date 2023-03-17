@@ -7,7 +7,7 @@ export default function Footer() {
       <Container className="sticky-bottom">
         <Row>
           <Col className="text-center">
-            <p>This is the Footer page!</p>
+            <p>© T N T 🧨 </p>
           </Col>
         </Row>
       </Container>

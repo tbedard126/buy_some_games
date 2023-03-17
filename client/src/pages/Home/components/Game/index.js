@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_GAMES } from "../../../../graphql/queries";
 
@@ -17,16 +17,23 @@ export default function GameCard() {
         {data.games.map((game) => (
           <Col key={game._id}>
             <Link to={`/games/${game._id}`}>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src={game.imgUrl} />
-              <Card.Body className="cardbody">
-                <Card.Title>{game.name}</Card.Title>
-                <Card.Text>{game.price}</Card.Text>
-                <Card.Text>{game.category}</Card.Text>
-              </Card.Body>
-            </Card>
+              <Card style={{ width: "18rem", height: "100%" }}>
+                <Card.Img
+                  variant="top"
+                  src={game.imgUrl}
+                  style={{
+                    height: "10rem",
+                    width: "18rem",
+                    objectFit: "cover",
+                  }}
+                />
+                <Card.Body className="cardbody">
+                  <Card.Title>{game.name}</Card.Title>
+                  <Card.Text>{game.price}</Card.Text>
+                  <Card.Text>{game.category}</Card.Text>
+                </Card.Body>
+              </Card>
             </Link>
-            
           </Col>
         ))}
       </Row>

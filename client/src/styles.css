@@ -2,11 +2,9 @@ body {
     background-color: gray;
     color: black;
     font-family: 'Exo 2', sans-serif;
+    padding-bottom: 100px;
 }
 
-.cardbody {
-    background-color: blueviolet;
-}
 
 /* Added this for App.js 'container' class */
 .container {
@@ -14,4 +12,18 @@ body {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.cardbody {
+    background-color: #6f42c1;
+    color: whitesmoke;
+}
+
+.footer {
+    background-color: #6f42c1;
+}
+
+.header {
+    background-color: #6f42c1;
+
 }

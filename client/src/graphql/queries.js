@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const QUERY_GAME = gql`
   query getGame($id: ID!) {
-    game(_id: $id) {
+    game(id: $id) {
       category
       description
       imgUrl

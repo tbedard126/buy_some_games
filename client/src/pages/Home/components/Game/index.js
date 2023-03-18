@@ -19,6 +19,7 @@ export default function GameCard() {
             <Link to={`/games/${game._id}`}>
               <Card style={{ width: "18rem", height: "100%" }}>
                 <Card.Img
+                  className="zoom img"
                   variant="top"
                   src={game.imgUrl}
                   style={{

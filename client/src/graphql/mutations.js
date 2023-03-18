@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
@@ -13,16 +13,8 @@ export const LOGIN = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser(
-    $username: String!
-    $email: String!
-    $password: String!
-  ) {
-    addUser(
-      username: $username
-      email: $email
-      password: $password
-    ) {
+  mutation addUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
       token
       user {
         _id
@@ -39,7 +31,7 @@ export const ADD_GAME = gql`
     $imgUrl: String
     $price: Float!
     $category: String!
-    $seller: String   ## this will need to change -- we'll grab the users ObjectID from context
+    $seller: String ## this will need to change -- we'll grab the users ObjectID from context
   ) {
     addGame(
       name: $name
@@ -47,21 +39,16 @@ export const ADD_GAME = gql`
       imgUrl: $imgUrl
       price: $price
       category: $category
-      seller: $seller   ## this will need to change --  we'll grab the users ObjectID from context
-    ) {
-      game {
-        _id
-        name
-      }
-    }
+      seller: $seller ## this will need to change --  we'll grab the users ObjectID from context
+    )
   }
 `;
 
 // still needed
-  // updateGame
-  // deleteGame
-  // addOrder
+// updateGame
+// deleteGame
+// addOrder
 
-  // nice to have?
-    // updateUser
-    // deleteUser
+// nice to have?
+// updateUser
+// deleteUser

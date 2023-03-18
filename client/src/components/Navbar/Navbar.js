@@ -2,17 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import Auth from '../../auth/auth';
-import AddGame from "../../components/AddGame";
+import AddGame from "../AddGame";
 
 export default function Navbar({ currentPage, handlePageChange }) {
-  const links = [
-    { name: "Home", to: "/" },
-    { name: "Profile", to: "/users" },
-    { name: "Log In", to: "/login" },
-    { name: "Sign Up", to: "/signup" },
-    { name: "Sign Out", to: "#signOut" },
-    { name: "Cart", to: "#cart" },
-  ];
 
   const handleLogout = (event) => {
     event.preventDefault();

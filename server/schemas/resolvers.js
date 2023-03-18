@@ -7,7 +7,11 @@ const resolvers = {
   Query: {
     // get ALL games in DB
     games: async () => {
-      return await Game.find();
+      try {
+        return await Game.find({}).populate("seller");
+      } catch (e) {
+        console.log(`Error @ 'game' query: ${e}`);
+      }
     },
     // get ALL games by category
     gamesByCtgy: async (parent, { category }) => {

@@ -8,7 +8,7 @@ db.once("open", async () => {
       imgUrl: "/images/a-link-to-the-past-snes.jpg",
       price: 20,
       category: "Super Nintendo",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Mario RPG",
@@ -16,7 +16,7 @@ db.once("open", async () => {
       imgUrl: "/images/mario-rpg-snes.jpg",
       price: 20,
       category: "Super Nintendo",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Donkey Kong Country",
@@ -24,7 +24,7 @@ db.once("open", async () => {
       imgUrl: "/images/dk-country-snes.jpg",
       price: 20,
       category: "Super Nintendo",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Star Fox",
@@ -32,7 +32,7 @@ db.once("open", async () => {
       imgUrl: "/images/starfox-snes.jpg",
       price: 20,
       category: "Super Nintendo",
-      seller: "",
+      // seller: "",
     },
 
     {
@@ -41,7 +41,7 @@ db.once("open", async () => {
       imgUrl: "/images/super-mario-snes.jpg",
       price: 20,
       category: "Super Nintendo",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Super Mario World 2 Yoshis Island",
@@ -49,7 +49,7 @@ db.once("open", async () => {
       imgUrl: "/images/super-mario-world-2-yoshis-island.jpg",
       price: 20,
       category: "Super Nintendo",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Teenage Mutant Ninja Turtles Turtles in Time",
@@ -57,7 +57,7 @@ db.once("open", async () => {
       imgUrl: "/images/tmnt-turtles-in-time.jpg",
       price: 20,
       category: "Super Nintendo",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Excitebike",
@@ -65,7 +65,7 @@ db.once("open", async () => {
       imgUrl: "/images/Excitebike-nes.jpg",
       price: 20,
       category: "Nintendo",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Kirby's Adventure",
@@ -73,7 +73,7 @@ db.once("open", async () => {
       imgUrl: "/images/Kirby's-Adventure-nes.jpg",
       price: 20,
       category: "Nintendo",
-      seller: "",
+      // seller: "",
     },
     {
       name: "MegaMan 2",
@@ -81,7 +81,7 @@ db.once("open", async () => {
       imgUrl: "/images/Mega-man-2.jpg",
       price: 20,
       category: "Nintendo",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Ducktales",
@@ -89,7 +89,7 @@ db.once("open", async () => {
       imgUrl: "/images/DuckTales-nes.jpg",
       price: 20,
       category: "Nintendo",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Super Mario Bros",
@@ -97,7 +97,7 @@ db.once("open", async () => {
       imgUrl: "/images/Super-Mario-Bros-nes.jpg",
       price: 20,
       category: "Nintendo",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Earthworm Jim",
@@ -105,7 +105,7 @@ db.once("open", async () => {
       imgUrl: "/images/Earthworm-Jim.jpg",
       price: 20,
       category: "Sega Genesis",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Sonic The Hedgehog",
@@ -113,7 +113,7 @@ db.once("open", async () => {
       imgUrl: "/images/sonic-sega.jpg",
       price: 20,
       category: "Sega Genesis",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Sonic The Hedgehog",
@@ -121,7 +121,7 @@ db.once("open", async () => {
       imgUrl: "/images/sonic-sega.jpg",
       price: 20,
       category: "Sega Genesis",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Sonic The Hedgehog 2",
@@ -129,7 +129,7 @@ db.once("open", async () => {
       imgUrl: "/images/sonic-2.jpg",
       price: 20,
       category: "Sega Genesis",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Aladdin",
@@ -137,7 +137,7 @@ db.once("open", async () => {
       imgUrl: "/images/Aladdin-sega.jpg",
       price: 20,
       category: "Sega Genesis",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Donkey Kong 64",
@@ -145,7 +145,7 @@ db.once("open", async () => {
       imgUrl: "/images/Donkey-Kong-64.jpg",
       price: 20,
       category: "Nintendo 64",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Banjo and Kazooie",
@@ -153,7 +153,7 @@ db.once("open", async () => {
       imgUrl: "/images/Banjo-Kazooie.jpg",
       price: 20,
       category: "Nintendo 64",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Paper Mario",
@@ -161,7 +161,7 @@ db.once("open", async () => {
       imgUrl: "/images/Paper-Mario-64.jpg",
       price: 20,
       category: "Nintendo 64",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Mario Kart 64",
@@ -169,7 +169,7 @@ db.once("open", async () => {
       imgUrl: "/images/Mario-Kart-64.jpg",
       price: 20,
       category: "Nintendo 64",
-      seller: "",
+      // seller: "",
     },
     {
       name: "Super Smash Bros",
@@ -177,7 +177,7 @@ db.once("open", async () => {
       imgUrl: "/images/Super-Smash-Bros-64.jpg",
       price: 20,
       category: "Nintendo 64",
-      seller: "",
+      // seller: "",
     },
   ]);
 });

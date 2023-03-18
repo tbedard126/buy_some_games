@@ -31,7 +31,7 @@ export default function Game() {
         <Col xs={12} md={6}>
           <div>{selectedGame.description}</div>
           <div>{selectedGame.price}</div>
-          <div>{selectedGame.seller}</div>
+          <div>{selectedGame.seller?.username}</div>
           <div>{selectedGame.views}</div>
         </Col>
       </Row>

@@ -48,6 +48,14 @@ export const ADD_GAME = gql`
   }
 `;
 
+export const REMOVE_GAME = gql`
+  mutation removeGame($id: ID!) {
+    removeGame(id: $id) {
+      name
+    }
+  }
+`;
+
 // still needed
 // updateGame
 // deleteGame

@@ -76,9 +76,9 @@ const resolvers = {
     },
 
     // DELETE one game (also remove it from User's games array)
-    removeGame: async (parent, { gameId }, context) => {
+    removeGame: async (parent, { id }, context) => {
       if (context.user) {
-        const game = await Game.findByIdAndDelete(gameId);
+        const game = await Game.findByIdAndDelete(id);
 
         await User.findOneAndUpdate(
           { _id: context.user._id },

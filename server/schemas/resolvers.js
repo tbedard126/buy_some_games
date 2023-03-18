@@ -34,6 +34,7 @@ const resolvers = {
     },
     // CREATE one game (will need a form for this -- also updates the seller's games array)
     // addGame: async (parent, args, context) => {
+    //   console.log('args:' + args, + '.. context: ' + context.user );
     //   if (context.user) {
     //     const game = await Game.create({
     //       ...args,  //is spread necessary here? it may just copy
@@ -52,6 +53,7 @@ const resolvers = {
     addGame: async (parent, args, context) => {
       // wrap this in a 'has JWT token i.e. isLoggedIn' if statement, with an autherror afterward
       const game = await Game.create({ ...args }); // this will expand out to be args AND 'seller: context.user._id'
+      console.log(`args: ${{...args}} .. context.user: ${context.user._id}`);
 
       await User.findOneAndUpdate(
         { username: "skippy" }, // this will be by ID thru context

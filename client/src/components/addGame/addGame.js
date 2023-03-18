@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { ADD_GAME } from "../../graphql/mutations";
+import Auth from "../../auth/auth"
 
 const AddGameModal = () => {
   const [showModal, setShowModal] = useState(false);
@@ -15,18 +16,21 @@ const AddGameModal = () => {
     const description = event.target.description.value;
     const price = parseFloat(event.target.price.value);
     const category = event.target.category.value;
-    addGame({
+    const { data } = addGame({
       variables: {
         name: name,
         description: description,
         price: price,
         category: category,
+        // userBlah: Auth.getProfile().data.username,
       },
     })
       .then(() => {
+        console.log(data);
         handleClose();
       })
       .catch((error) => {
+        console.log(data);
         console.error(error);
       });
   };

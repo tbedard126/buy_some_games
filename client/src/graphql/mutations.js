@@ -40,7 +40,10 @@ export const ADD_GAME = gql`
       price: $price
       category: $category
       seller: $seller ## this will need to change --  we'll grab the users ObjectID from context
-    )
+    ) {
+      _id
+      name
+    }
   }
 `;
 

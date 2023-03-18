@@ -45,7 +45,7 @@ function App() {
           <div className="flex-column justify-flex-start min-100-vh"> {/* make sure these classes match bootsraps classes name for the same functionality */}
             <Header />
             <Navbar />
-            <div className="container">
+            <div>
               <Routes>
                 <Route
                   path="/"

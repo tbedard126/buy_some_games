@@ -56,8 +56,7 @@ function App() {
                   element={<Game />}
                 />
                 <Route
-                  // path="/users/:userId" // will need to change back to this
-                  path="/users"
+                  path="/users/:userId" // will need to change back to this
                   element={<Seller />}
                 />
                 <Route

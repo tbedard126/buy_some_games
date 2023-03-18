@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_GAME } from "../../graphql/mutations";
 import Auth from "../../auth/auth";
 
-const AddGameModal = () => {
+const AddGame = () => {
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);
 
@@ -90,4 +90,4 @@ const AddGameModal = () => {
   );
 };
 
-export default AddGameModal;
+export default AddGame;

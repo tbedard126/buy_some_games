@@ -30,7 +30,7 @@ class AuthService {
   login(idToken) {
     // Put JWT in localStorage
     localStorage.setItem('id_token', idToken);
-    // Automatically redirects to home
+    // Automatically redirects to home (do we want to actually go to login?)
     window.location.assign('/');
   }
 

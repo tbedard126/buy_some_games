@@ -60,6 +60,7 @@ const typeDefs = gql`
     ): Game
 
     updateGame(
+      id: ID!
       name: String
       description: String
       imgUrl: String

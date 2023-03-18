@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { ADD_GAME } from "../../graphql/mutations";
-import Auth from "../../auth/auth"
+import Auth from "../../auth/auth";
 
 const AddGameModal = () => {
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +22,7 @@ const AddGameModal = () => {
         description: description,
         price: price,
         category: category,
-        // userBlah: Auth.getProfile().data.username,
+        seller: Auth.getProfile().data._id,
       },
     })
       .then(() => {

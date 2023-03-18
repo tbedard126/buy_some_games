@@ -31,6 +31,7 @@ export const ADD_GAME = gql`
     $imgUrl: String
     $price: Float!
     $category: String!
+#    $seller: ID 
     $seller: String ## this will need to change -- we'll grab the users ObjectID from context
   ) {
     addGame(

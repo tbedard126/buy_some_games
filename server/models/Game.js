@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const { Schema } = mongoose;
+const { Schema, Types } = mongoose;
 
 const gameSchema = new Schema({
   name: {
@@ -33,8 +33,9 @@ const gameSchema = new Schema({
     required: true,
   },
   seller: {
-    type: String,     // will change this to ObjectID
+    // type: Types.ObjectId,     // will change this to ObjectID
     // ref: "User",
+    type: String
   },
 });
 

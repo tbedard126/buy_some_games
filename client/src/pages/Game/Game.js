@@ -10,8 +10,7 @@ export default function Game() {
     variables: { id: gameId },
   });
   const selectedGame = data?.game || {};
-  console.log(selectedGame.imgUrl);
-
+  console.log(data);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error</p>;
 

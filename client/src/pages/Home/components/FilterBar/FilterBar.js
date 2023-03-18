@@ -12,11 +12,7 @@ export default function FilterBar() {
   ];
 
   // arrange categories
-  const sortChoices = [
-    "Sort by Name",
-    "Sort by Price",
-    "Sort By Popular"
-  ];
+  const sortChoices = ["Sort by Name", "Sort by Price", "Sort By Popular"];
 
   return (
     <div>

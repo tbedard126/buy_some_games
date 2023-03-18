@@ -1,1 +1,1 @@
-export { default } from "./AddGame";
+export { default } from "./addGame";

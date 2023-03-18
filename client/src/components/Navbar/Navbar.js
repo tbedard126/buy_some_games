@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import Auth from '../../auth/auth';
-import AddGame from "../AddGame";
+import AddGame from "../addGame";
 
 export default function Navbar({ currentPage, handlePageChange }) {
 

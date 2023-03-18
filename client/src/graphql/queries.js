@@ -51,6 +51,7 @@ export const QUERY_SELLERS_GAMES = gql`
   query getSellersGames($id: ID!) {
     getSellersGames(id: $id) {
       games {
+        _id
         name
         description
         imgUrl

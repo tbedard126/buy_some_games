@@ -47,6 +47,21 @@ export const QUERY_ALL_GAMES = gql`
   }
 `;
 
+export const QUERY_SELLERS_GAMES = gql`
+  query getSellersGames($id: ID!) {
+    getSellersGames(id: $id) {
+      games {
+        name
+        description
+        imgUrl
+        price
+        views
+        category
+      }
+    }
+  }
+`;
+
 // still needed:
 // games by user (seller -- could either query the user and populate their games,
 //                    OR query games passing in the user

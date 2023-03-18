@@ -22,8 +22,8 @@ const resolvers = {
       return await Game.findById(id).populate("seller");
     },
     // get ONE seller (User) by ID
-    seller: async (parent, { userId }) => {
-      return await User.findById(userId).populate("games");
+    getSellersGames: async (parent, { id }) => {
+      return await User.findById(id).populate("games");
     },
     // GET all orders (by one user, buyer OR seller -- so this may need to be 2 separate routes),
     // ***nice to have**  get all users (sellers -- a new page, where they can sort by rating),

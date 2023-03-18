@@ -33,33 +33,34 @@ const resolvers = {
       return { token, user };
     },
     // CREATE one game (will need a form for this -- also updates the seller's games array)
-    // addGame: async (parent, args, context) => {
-    //   if (context.user) {
-    //     const game = await Game.create({
-    //       ...args,  //is spread necessary here? it may just copy
-    //       seller: context.user._id});
-
-    //     await User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $addToSet: { games: game._id }}
-    //     );
-
-    //     return game;
-    //   }
-    //   throw new AuthenticationError('Only sellers can list games; login or sign-up first!');
-    // },
-    // Create one game, without context/auth (interim) -- right now seller is a just a string
     addGame: async (parent, args, context) => {
-      // wrap this in a 'has JWT token i.e. isLoggedIn' if statement, with an autherror afterward
-      const game = await Game.create({ ...args }); // this will expand out to be args AND 'seller: context.user._id'
+      console.log('args:' + args, + '.. context: ' + context.user._id );
+      if (context.user) {
+        const game = await Game.create({ ...args });
+        console.log(game);
 
-      await User.findOneAndUpdate(
-        { username: "skippy" }, // this will be by ID thru context
-        { $addToSet: { games: game.id } }
-      );
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { games: game._id }}
+        );
 
-      return game;
+        return game;
+      }
+      throw new AuthenticationError('Only sellers can list games; login or sign-up first!');
     },
+    // Create one game, without context/auth (interim) -- right now seller is a just a string
+    // addGame: async (parent, args, context) => {
+    //   // wrap this in a 'has JWT token i.e. isLoggedIn' if statement, with an autherror afterward
+    //   const game = await Game.create({ ...args }); // this will expand out to be args AND 'seller: context.user._id'
+    //   console.log(`args: ${{args}} .. context.user._id: ${context.user._id}`);
+
+    //   await User.findOneAndUpdate(
+    //     { username: "skippy" }, // this will be by ID thru context
+    //     { $addToSet: { games: game.id } }
+    //   );
+
+    //   return game;
+    // },
 
     // UPDATE one game by ID (will have to grab ID from params)
     // THIS IS NON-AUTH VERSION WHERE WE PASS THE NAME IN INSTEAD OF ID

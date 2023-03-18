@@ -1,18 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { Card, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Auth from "../../auth/auth";
 import { QUERY_SELLERS_GAMES } from "../../graphql/queries";
+import UpdateGame from "./UpdateGame";
+import { REMOVE_GAME } from "../../graphql/mutations";
 
 export default function Seller() {
   const { userId } = useParams();
   const { loading, error, data } = useQuery(QUERY_SELLERS_GAMES, {
     variables: { id: userId },
   });
+
+  const [removeGame] = useMutation(REMOVE_GAME); 
+  const handleRemove = (event, gameId) => {
+    event.preventDefault();
+    const { data } = removeGame({
+      variables: {
+        id: gameId
+      },
+  })
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{`${error}`}</p>;
+  
 
   return (
     <div>
@@ -37,6 +50,10 @@ export default function Seller() {
                     <Card.Title>{game.name}</Card.Title>
                     <Card.Text>{game.price}</Card.Text>
                     <Card.Text>{game.category}</Card.Text>
+                    <div>
+                      <UpdateGame gameId={game._id} />
+                      <button onClick={(gameId) => handleRemove}>Delete Game</button>
+                    </div>
                   </Card.Body>
                 </Card>
               </Link>
@@ -46,4 +63,4 @@ export default function Seller() {
       </div>
     </div>
   );
-}
+}}

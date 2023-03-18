@@ -11,11 +11,11 @@ const gameSchema = new Schema({
   description: {
     type: String,
     trim: true,
-    default: 'No description for this game'
+    default: "No description for this game",
   },
   imgUrl: {
     type: String,
-    default: './images/blank-cartridge.jpg'
+    default: "/images/blank-cartridge.jpg",
   },
   price: {
     type: Number,
@@ -25,7 +25,7 @@ const gameSchema = new Schema({
   views: {
     type: Number,
     min: 0,
-    default: 0
+    default: 0,
   },
   category: {
     type: String,
@@ -33,7 +33,7 @@ const gameSchema = new Schema({
     required: true,
   },
   seller: {
-    type: Schema.Types.ObjectId,     // will change this to ObjectID
+    type: Schema.Types.ObjectId, // will change this to ObjectID
     ref: "User",
     // type: String
   },

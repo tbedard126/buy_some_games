@@ -14,18 +14,17 @@ export default function Seller() {
     variables: { id: userId },
   });
 
-  const [removeGame] = useMutation(REMOVE_GAME); 
+  const [removeGame] = useMutation(REMOVE_GAME);
   const handleRemove = (event, gameId) => {
     event.preventDefault();
     const { data } = removeGame({
       variables: {
-        id: gameId
+        id: gameId,
       },
-  })
-
+    });
+  };
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{`${error}`}</p>;
-  
 
   return (
     <div>
@@ -52,7 +51,9 @@ export default function Seller() {
                     <Card.Text>{game.category}</Card.Text>
                     <div>
                       <UpdateGame gameId={game._id} />
-                      <button onClick={(gameId) => handleRemove}>Delete Game</button>
+                      <button onClick={(gameId) => handleRemove}>
+                        Delete Game
+                      </button>
                     </div>
                   </Card.Body>
                 </Card>
@@ -63,4 +64,4 @@ export default function Seller() {
       </div>
     </div>
   );
-}}
+}

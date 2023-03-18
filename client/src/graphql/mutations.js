@@ -48,11 +48,38 @@ export const ADD_GAME = gql`
   }
 `;
 
-// still needed
-// updateGame
-// deleteGame
-// addOrder
+export const UPDATE_GAME = gql`
+  mutation updateGame(
+    $id: ID!
+    $name: String!
+    $description: String
+    $imgUrl: String
+    $price: Float!
+    $category: String!
+    ) {
+    updateGame(
+      id: $id
+      name: $name
+      description: $description
+      imgUrl: $imgUrl
+      price: $price
+      category: $category
+    ) {
+      _id
+      name
+    }
+  }
+`;
 
-// nice to have?
-// updateUser
-// deleteUser
+export const REMOVE_GAME = gql`
+  mutation removeGame($id: ID!) {
+    removeGame(id: $id) {
+      name
+    }
+  }
+`;
+
+// still needed:
+// addOrder
+// incremeent games views
+

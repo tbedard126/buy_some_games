@@ -60,23 +60,20 @@ const typeDefs = gql`
     ): Game
 
     updateGame(
+      id: ID!
       name: String
       description: String
       imgUrl: String
       price: Float
       category: String
     ): Game
-    removeGame(_id: ID!): Game
+    removeGame(id: ID!): Game
     login(email: String!, password: String!): Auth
 
   ## still to add:
   #    addOrder(games: [ID]!): Order
-  #    logout
   #    increment views (on a game)
 
-  ## still to MAYBE add:
-  #    updateUser(username: String, email: String, password: String): User
-  #    removeUser(_id: ID!): User
   }
 `;
 

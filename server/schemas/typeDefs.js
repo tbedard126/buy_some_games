@@ -42,7 +42,7 @@ const typeDefs = gql`
     games: [Game]
     gamesByCtgy(category: String): [Game]
     game(id: ID!): Game
-    seller(_id: ID!): User
+    getSellersGames(id: ID!): User
     ### GET ALL ORDERS (once that function is written) ###
     ### **nice to have** gets all users ###
   }

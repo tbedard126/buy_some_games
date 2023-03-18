@@ -1,13 +1,20 @@
 import React from "react";
 import FilterBar from "./components/FilterBar";
 import GameCard from "./components/Game";
+import { Col, Row } from "react-bootstrap";
 
 const Home = () => {
   return (
-    <div className="container">
-      <FilterBar />
-      <GameCard />
-    </div>
+    <>
+      <Row>
+        <Col  md={2} sticky="top">
+          <FilterBar />
+        </Col>
+        <Col  md={10}>
+          <GameCard />
+        </Col>
+      </Row>
+    </>
   );
 };
 

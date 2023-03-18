@@ -37,6 +37,17 @@ const Login = (props) => {
     });
   };
 
+  const handleLogout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
+
+  if (Auth.loggedIn()) {
+    return (
+      <p>You're logged in, you sly fox. Click <span onClick={handleLogout} style={{color: 'blue', textDecoration: 'underline', cursor: 'pointer'}}>here</span> to logout, or go back <a href="/">home</a>.</p>
+    );
+  } else {
+
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
@@ -86,6 +97,7 @@ const Login = (props) => {
       </div>
     </main>
   );
+}
 };
 
 export default Login;

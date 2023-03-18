@@ -9,8 +9,8 @@ const typeDefs = gql`
     price: Float!
     views: Int
     category: String!
- #    seller: User    we'll want this once context.user works
-    seller: String
+    seller: User
+  # seller: String
   }
 
   type User {
@@ -55,8 +55,8 @@ const typeDefs = gql`
       imgUrl: String
       price: Float!
       category: String!
-  #      seller: ID     we'll want this once context.user works
-      seller: String
+      seller: ID  # is this right?
+#      seller: String
     ): Game
 
     updateGame(

@@ -8,7 +8,9 @@ export const QUERY_GAME = gql`
       imgUrl
       name
       price
-      seller
+      seller {
+        username
+      }
       views
     }
   }
@@ -21,7 +23,9 @@ export const QUERY_GAMES_BY_CAT = gql`
       imgUrl
       name
       price
-      seller
+      seller {
+        username
+      }
       views
     }
   }
@@ -35,7 +39,9 @@ export const QUERY_ALL_GAMES = gql`
       imgUrl
       name
       price
-      seller
+      seller {
+        username
+      }
       views
     }
   }

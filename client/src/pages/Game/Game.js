@@ -29,10 +29,10 @@ export default function Game() {
       }
       cartArray.push(gameObj);
       localStorage.setItem("cartItems", JSON.stringify(cartArray));
+      alert('Added game to cart!');
     }
   };
 
-  console.log(data);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error</p>;
 

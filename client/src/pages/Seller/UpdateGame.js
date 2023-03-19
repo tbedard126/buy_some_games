@@ -57,7 +57,7 @@ export default function UpdateGame({ gameId, name, description, price, category 
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="name">
               <Form.Label>Name</Form.Label>
-              <Form.Control type="text" value={name} placeholder="Enter game name" />
+              <Form.Control type="text" defaultValue={name} placeholder="Enter game name" />
             </Form.Group>
 
             <Form.Group controlId="description">
@@ -65,7 +65,7 @@ export default function UpdateGame({ gameId, name, description, price, category 
               <Form.Control
                 as="textarea"
                 rows={3}
-                value={description}
+                defaultValue={description}
                 placeholder="Enter game description"
               />
             </Form.Group>
@@ -75,7 +75,7 @@ export default function UpdateGame({ gameId, name, description, price, category 
               <Form.Control
                 type="number"
                 step="0.01"
-                value={price}
+                defaultValue={price}
                 placeholder="Enter game price"
               />
             </Form.Group>

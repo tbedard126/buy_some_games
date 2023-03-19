@@ -72,7 +72,7 @@ const resolvers = {
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { games: game._id } }
+          { $pull: { games: id } }
         );
 
         return game;

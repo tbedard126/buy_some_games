@@ -67,6 +67,11 @@ export const UPDATE_GAME = gql`
     ) {
       _id
       name
+      description
+      category
+      price
+      imgUrl
+      views
     }
   }
 `;

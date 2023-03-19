@@ -16,12 +16,16 @@ export default function Seller() {
 
   const [removeGame] = useMutation(REMOVE_GAME);
   const handleRemove = (event, gameId) => {
-    event.preventDefault();
-    const { data } = removeGame({
+    // event.preventDefault();
+    const { data } = removeGame({   // incomplete
       variables: {
         id: gameId,
       },
+      // update: (cache, { data: { id } }) =>  {
+      //   cache.modify()
+      // }};
     });
+    window.location.reload();
   };
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{`${error}`}</p>;
@@ -33,31 +37,29 @@ export default function Seller() {
         <Row xs={1} sm={2} md={3} className="g-4">
           {data.getSellersGames.games.map((game) => (
             <Col key={game._id}>
-              <Link to={`/games/${game._id}`}>
-                <Card style={{ width: "18rem", height: "100%" }}>
-                  <Card.Img
-                    className="zoom img"
-                    variant="top"
-                    src={game.imgUrl}
-                    style={{
-                      height: "10rem",
-                      width: "18rem",
-                      objectFit: "cover",
-                    }}
-                  />
-                  <Card.Body className="cardbody">
-                    <Card.Title>{game.name}</Card.Title>
-                    <Card.Text>{game.price}</Card.Text>
-                    <Card.Text>{game.category}</Card.Text>
-                    <div>
-                      <UpdateGame gameId={game._id} />
-                      <button onClick={(gameId) => handleRemove}>
-                        Delete Game
-                      </button>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </Link>
+              <Card style={{ width: "18rem", height: "100%" }}>
+                <Card.Img
+                  className="zoom img"
+                  variant="top"
+                  src={game.imgUrl}
+                  style={{
+                    height: "10rem",
+                    width: "18rem",
+                    objectFit: "cover",
+                  }}
+                />
+                <Card.Body className="cardbody">
+                  <Card.Title>{game.name}</Card.Title>
+                  <Card.Text>{game.price}</Card.Text>
+                  <Card.Text>{game.category}</Card.Text>
+                  <div>
+                    <UpdateGame gameId={game._id} />
+                    <button onClick={(event) => handleRemove(event, game._id)}>
+                      Delete Game
+                    </button>
+                  </div>
+                </Card.Body>
+              </Card>
             </Col>
           ))}
         </Row>

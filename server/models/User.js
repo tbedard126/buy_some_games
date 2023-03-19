@@ -2,10 +2,9 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-// const Order = require('./Order');  // we may need this if we get far enough
 
 const userSchema = new Schema({
-  username: {       // had to fix this here
+  username: {
     type: String,
     required: true,
     trim: true,
@@ -28,8 +27,6 @@ const userSchema = new Schema({
       ref: 'Game'
     }
   ]
-  // rating field if we get far enough,
-  // logoUrl (nice to have / stretch)
 });
 
 // set up pre-save middleware to create password

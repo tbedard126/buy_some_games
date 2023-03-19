@@ -48,19 +48,18 @@ export const ADD_GAME = gql`
   }
 `;
 
-export const ADD_ORDER = gql`
-  mutation addOrder(
-    $gamesArr: [ID]
-  ) {
-    addOrder(
-      games: $gamesArr
-    ) {
-      _id
-      purchaseDate
-      games
-    }
-  }
-`;
+// export const ADD_ORDER = gql`
+//   mutation addOrder(
+//     $gamesArr: [ID]
+//   ) {
+//     addOrder(
+//       games: $gamesArr
+//     ) {
+//       _id
+//       games
+//     }
+//   }
+// `;
 
 export const UPDATE_GAME = gql`
   mutation updateGame(

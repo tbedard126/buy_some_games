@@ -17,6 +17,7 @@ import Game from "./pages/Game";
 import Seller from "./pages/Seller";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Bought from "./pages/Bought";
 ;
 
 
@@ -61,6 +62,7 @@ function App() {
                 />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/order" element={<Bought />} />
               </Routes>
             </div>
             <Footer />

@@ -31,24 +31,9 @@ export default function Cart() {
 
   const handlePurchase = () => {
     const cartArray = getCartItems();
-    if (cartArray) {
-      const gameIds = [];
-      cartArray.map(game => {
-        gameIds.push(game.id);
-      });
-
-      const { data } = addOrder({
-        variables: { gamesArr: gameIds },
-      })
-      .then(() => {
-        console.log(data);
-        localStorage.removeItem("cartItems");
+    if (cartArray && cartArray.length >= 1) {
         handleClose();
-        window.location.assign("/");
-      })
-      .catch((error) => {
-        console.error(error);
-      })
+        window.location.assign("/order");
     } else {
       alert(`Nothing to purchase. Don't ask me why the button is active though..`);
     }
@@ -91,7 +76,7 @@ export default function Cart() {
           <p>Total: ${sumPrice()}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="success" onClick={handleClose}>
+          <Button variant="success" onClick={handlePurchase}>
             Purchase
           </Button>
         </Modal.Footer>

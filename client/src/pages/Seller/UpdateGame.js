@@ -4,11 +4,18 @@ import { useMutation } from "@apollo/client";
 import { UPDATE_GAME } from "../../graphql/mutations";
 import Auth from "../../auth/auth";
 
-export default function UpdateGame({ gameId }) {
+export default function UpdateGame({ gameId, name, description, price, category }) {
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);
 
   const [updateGame] = useMutation(UPDATE_GAME);
+
+  const selectConsoles = [
+    "Nintendo",
+    "Super Nintendo",
+    "Sega Genesis",
+    "Nintendo 64"
+  ];
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,7 +57,7 @@ export default function UpdateGame({ gameId }) {
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="name">
               <Form.Label>Name</Form.Label>
-              <Form.Control type="text" placeholder="Enter game name" />
+              <Form.Control type="text" value={name} placeholder="Enter game name" />
             </Form.Group>
 
             <Form.Group controlId="description">
@@ -58,6 +65,7 @@ export default function UpdateGame({ gameId }) {
               <Form.Control
                 as="textarea"
                 rows={3}
+                value={description}
                 placeholder="Enter game description"
               />
             </Form.Group>
@@ -67,6 +75,7 @@ export default function UpdateGame({ gameId }) {
               <Form.Control
                 type="number"
                 step="0.01"
+                value={price}
                 placeholder="Enter game price"
               />
             </Form.Group>
@@ -74,10 +83,17 @@ export default function UpdateGame({ gameId }) {
             <Form.Group controlId="category">
               <Form.Label>Category</Form.Label>
               <Form.Control as="select">
-                <option>Super Nintendo</option>
+                {/* <option>Super Nintendo</option>
                 <option>Nintendo 64</option>
                 <option>Sega Genesis</option>
-                <option>Nintendo</option>
+                <option>Nintendo</option> */}
+                {selectConsoles.map((option) => {
+                  if (option === category) {
+                    return <option selected>{option}</option>
+                  } else {
+                    return <option>{option}</option>
+                  }
+                })};
               </Form.Control>
             </Form.Group>
 

@@ -53,7 +53,8 @@ export default function Seller() {
                   <Card.Text>{game.price}</Card.Text>
                   <Card.Text>{game.category}</Card.Text>
                   <div>
-                    <UpdateGame gameId={game._id} />
+                    <UpdateGame gameId={game._id} name={game.name} description={game.description} price={game.price} category={game.category}
+                    />
                     <button onClick={(event) => handleRemove(event, game._id)}>
                       Delete Game
                     </button>

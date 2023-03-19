@@ -54,13 +54,14 @@ const resolvers = {
       throw new AuthenticationError('Only sellers can list games; login or sign-up first!');
     },
     // CREATE ORDER (from cart, which holds array of games (id) to buy
-    addOrder: async (parent, { gamesArr }, context) => {
-      try {
-        return await Order.create({ ...gamesArr });
-      } catch (e) {
-        console.log(`Error @ 'game' query: ${e}`);
-      }
-    },
+    // addOrder: async (parent, { gamesArr }, context) => {
+    //   try {
+    //     console.log(args);
+    //     return await Order.create({ ...args });
+    //   } catch (e) {
+    //     console.log(`Error @ 'game' query: ${e}`);
+    //   }
+    // },
     // UPDATE one game by ID
     updateGame: async (parent, args, context) => {
       if (context.user) {

@@ -54,8 +54,13 @@ export default function Cart() {
   //   }
   // }
 
-  const handleRemoveItem = () => {
-    
+  const handleRemoveItem = (event) => {
+    const gameName = event.target.parentElement.getAttribute('data-name');
+    const cartArray = getCartItems();
+    const newCartArray = cartArray.filter(game => game.name !== gameName);
+    localStorage.setItem("cartItems", JSON.stringify(newCartArray));
+    alert('Removed game from cart');
+    handleClose();
   }
 
   return (
@@ -73,10 +78,11 @@ export default function Cart() {
             {!getCartItems() ? <p>No items in cart</p> :
               getCartItems().map(game => {
                 return (
-                  <li key={game.name} className="m-3">
+                  <li key={game.name} className="m-3" data-name={game.name}>
                     <span>{game.name}</span>
                     <span>${game.price}</span>
                     <span className="bg-danger p-1 text-white rounded"
+                      onClick={handleRemoveItem}
                       style={{ float: "right", cursor: "pointer" }}>Remove</span>
                   </li>
                 )

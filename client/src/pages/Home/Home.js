@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FilterBar from "./components/FilterBar";
 import GameCard from "./components/Game/Game";
 import { Col, Row } from "react-bootstrap";
@@ -23,15 +23,16 @@ const images = [
 ];
 
 const Home = () => {
+  const [showAllGames, setShowAllGames] = useState(false);
   return (
     <>
       <Row>
         <ImageCarousel images={images} />
         <Col md={2} sticky="top">
-          <FilterBar />
+          <FilterBar setShowAllGames={setShowAllGames} />
         </Col>
         <Col md={10}>
-          <GameCard />
+          <GameCard setShowAllGames={setShowAllGames} />
         </Col>
       </Row>
     </>

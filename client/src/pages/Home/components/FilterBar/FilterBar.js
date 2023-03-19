@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function FilterBar() {
   const [category, setCategory] = useState("");
+  const [setShowGames, setShowAllGames] = useState(false);
 
   const { loading, error, data } = useQuery(QUERY_GAMES_BY_CAT, {
     variables: { category },
@@ -13,17 +14,27 @@ export default function FilterBar() {
 
   const handleCategoryClick = (cat) => {
     setCategory(cat);
+    setShowAllGames(false);
   };
 
   return (
     <>
       <div className="d-grid gap-2">
-        <Button variant="outline-dark" onClick={() => handleCategoryClick("")}>
+        <Button
+          variant="outline-dark"
+          onClick={() => {
+            setCategory("");
+            setShowAllGames(true);
+          }}
+        >
           All Games
         </Button>
         <Button
           variant="outline-dark"
-          onClick={() => handleCategoryClick("Nintendo")}
+          onClick={() => {
+            setCategory("Nintendo");
+            setShowAllGames(false);
+          }}
         >
           Nintendo
         </Button>

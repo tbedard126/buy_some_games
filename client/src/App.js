@@ -17,26 +17,9 @@ import Game from "./pages/Game";
 import Seller from "./pages/Seller";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import ImageCarousel from "./components/Carousel/Carousel";
+;
 
-const images = [
-  {
-    src: "/images/Snes.jpg",
-    alt: "Image 1",
-  },
-  {
-    src: "/images/sega.jpg",
-    alt: "Image 2",
-  },
-  {
-    src: "/images/Nes.jpg",
-    alt: "Image 3",
-  },
-  {
-    src: "/images/n64.jpg",
-    alt: "Image 3",
-  },
-];
+
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -67,7 +50,7 @@ function App() {
             {/* make sure these classes match bootsraps classes name for the same functionality */}
             <Header />
             <Navbar />
-            <ImageCarousel images={images} />
+            
             <div>
               <Routes>
                 <Route path="/" element={<Home />} />

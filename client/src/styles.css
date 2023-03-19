@@ -1,10 +1,9 @@
 body {
-    background-color: gray;
-    color: black;
-    font-family: 'Exo 2', sans-serif;
-    padding-bottom: 100px;
+  background-color: gray;
+  color: black;
+  font-family: "Exo 2", sans-serif;
+  padding-bottom: 100px;
 }
-
 
 /* Added this for App.js 'container' class */
 .container {
@@ -15,38 +14,67 @@ body {
 }
 
 .cardbody {
-    background-color: #6f42c1;
-    color: whitesmoke;
+  background-color: #6f42c1;
+  color: whitesmoke;
 }
 
 .footer {
-    background-color: #6f42c1;
+  background-color: #6f42c1;
 }
 
 .header {
-    background-color: #6f42c1;
-
+  background-color: #6f42c1;
 }
 
 .zoom {
-    /* padding: 50px; */
-    transition: transform .2s; /* Animation */
-    /* width: 200px;
+  /* padding: 50px; */
+  transition: transform 0.2s; /* Animation */
+  /* width: 200px;
     height: 200px;
     margin: 0 auto; */
-  }
-  
-  .zoom:hover {
-    transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-  }
+}
+
+.zoom:hover {
+  transform: scale(
+    1.2
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
 
 .img {
-    border: 1px solid #6f42c1;
-    border-radius: 4px;
-    padding: 5px;
-    width: 150px;
-  }
-  
-  .img:hover {
-    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-  }
+  border: 1px solid #6f42c1;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
+.img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+.navbar {
+  width: 100%;
+  padding: 0;
+  background-color: #6f42c1;
+}
+
+.user-buttons {
+  height: auto;
+  margin: 8px;
+  padding: 6px 12px;
+}
+
+.nav-btn {
+  margin: 8px;
+  padding: 6px 12px;
+  color: black;
+  /* border-left-style: dashed;
+  border-right-style: dashed; */
+  border-top-style: double;
+  border-bottom-style: double;
+  cursor: pointer;
+  text-decoration: none;
+  height: max-content;
+}
+
+.nav-btn:hover {
+  color: bisque;
+}

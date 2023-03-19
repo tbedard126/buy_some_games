@@ -10,22 +10,21 @@ const typeDefs = gql`
     views: Int
     category: String!
     seller: User
-  # seller: String
   }
 
   type User {
     _id: ID!
-    username: String!      # TYPO HERE #
+    username: String!
     email: String!
  #    password: String!      # is this supposed to be in here? #
     games: [Game]
   }
 
-  #  type Order {
-  #    _id: ID
-  #    purchaseDate: String
-  #    games: [Game]
-  #  }
+  type Order {
+    _id: ID!
+  #  purchaseDate: Date     ## this needs a scalar to use this type
+    games: [Game]
+  }
 
   ####### Stripe
   type Checkout {
@@ -44,7 +43,6 @@ const typeDefs = gql`
     game(id: ID!): Game
     getSellersGames(id: ID!): User
     ### GET ALL ORDERS (once that function is written) ###
-    ### **nice to have** gets all users ###
   }
 
   type Mutation {
@@ -55,10 +53,9 @@ const typeDefs = gql`
       imgUrl: String
       price: Float!
       category: String!
-      seller: ID  # is this right?
-#      seller: String
+      seller: ID
     ): Game
-
+    addOrder(gamesArr: [ID]): Order    ## to use date, we'll nee a scalar for it
     updateGame(
       id: ID!
       name: String
@@ -71,7 +68,6 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
 
   ## still to add:
-  #    addOrder(games: [ID]!): Order
   #    increment views (on a game)
 
   }

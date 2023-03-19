@@ -53,6 +53,14 @@ const resolvers = {
       }
       throw new AuthenticationError('Only sellers can list games; login or sign-up first!');
     },
+    // CREATE ORDER (from cart, which holds array of games (id) to buy
+    addOrder: async (parent, { gamesArr }, context) => {
+      try {
+        return await Order.create({ ...gamesArr });
+      } catch (e) {
+        console.log(`Error @ 'game' query: ${e}`);
+      }
+    },
     // UPDATE one game by ID
     updateGame: async (parent, args, context) => {
       if (context.user) {
@@ -102,21 +110,6 @@ const resolvers = {
 
       return { token, user };
     },
-
-    // CREATE ORDER (from cart, which holds array of games (id) to buy -- once order submitted, THEN create)
-    // this is the one from the example, so when we employ it we'll need to change some pieces, but the general logic should be similar
-    // addOrder: async (parent, { products }, context) => {
-    //   console.log(context);
-    //   if (context.user) {
-    //     const order = new Order({ products });
-
-    //     await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
-
-    //     return order;
-    //   }
-
-    //   throw new AuthenticationError('Not logged in');
-    // },
   },
 };
 

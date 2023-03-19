@@ -22,7 +22,7 @@ const typeDefs = gql`
 
   type Order {
     _id: ID!
-    purchaseDate: Date
+  #  purchaseDate: Date     ## this needs a scalar to use this type
     games: [Game]
   }
 
@@ -55,7 +55,7 @@ const typeDefs = gql`
       category: String!
       seller: ID
     ): Game
-    addOrder(purchaseDate: Date, games: [Game]): Order
+    addOrder(games: [Game]): Order    ## to use date, we'll nee a scalar for it
     updateGame(
       id: ID!
       name: String

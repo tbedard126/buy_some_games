@@ -17,10 +17,6 @@ import Game from "./pages/Game";
 import Seller from "./pages/Seller";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-;
-
-
-
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
@@ -48,9 +44,10 @@ function App() {
           <div className="flex-column justify-flex-start min-100-vh">
             {" "}
             {/* make sure these classes match bootsraps classes name for the same functionality */}
-            <Header />
-            <Navbar />
-            
+            <div className="headNavCont">
+              <Header />
+              <Navbar />
+            </div>
             <div>
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -63,7 +60,9 @@ function App() {
                 <Route path="/signup" element={<Signup />} />
               </Routes>
             </div>
-            <Footer />
+            <div className="footerCont">
+              <Footer />
+            </div>
           </div>
         </Router>
       </ApolloProvider>

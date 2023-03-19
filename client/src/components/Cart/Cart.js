@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from "@apollo/client";
-import { ADD_ORDER } from "../../graphql/mutations";
+// import { ADD_ORDER } from "../../graphql/mutations";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -10,7 +10,7 @@ export default function Cart() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [addOrder] = useMutation(ADD_ORDER);
+  // const [addOrder] = useMutation(ADD_ORDER);
 
   const getCartItems = () => {
     const cartArray = JSON.parse(localStorage.getItem("cartItems"));
@@ -29,30 +29,15 @@ export default function Cart() {
     return total;
   }
 
-  // const handlePurchase = () => {
-  //   const cartArray = getCartItems();
-  //   if (cartArray) {
-  //     const gameIds = [];
-  //     cartArray.map(game => {
-  //       gameIds.push(game.id);
-  //     });
-
-  //     const { data } = addOrder({
-  //       variables: { gamesArr: gameIds },
-  //     })
-  //     .then(() => {
-  //       console.log(data);
-  //       localStorage.removeItem("cartItems");
-  //       handleClose();
-  //       window.location.assign("/");
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     })
-  //   } else {
-  //     alert(`Nothing to purchase. Don't ask me why the button is active though..`);
-  //   }
-  // }
+  const handlePurchase = () => {
+    const cartArray = getCartItems();
+    if (cartArray && cartArray.length >= 1) {
+        handleClose();
+        window.location.assign("/order");
+    } else {
+      alert(`Nothing to purchase. Don't ask me why the button is active though..`);
+    }
+  }
 
   const handleRemoveItem = (event) => {
     const gameName = event.target.parentElement.getAttribute('data-name');
@@ -91,7 +76,7 @@ export default function Cart() {
           <p>Total: ${sumPrice()}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="success" onClick={handleClose}>
+          <Button variant="success" onClick={handlePurchase}>
             Purchase
           </Button>
         </Modal.Footer>

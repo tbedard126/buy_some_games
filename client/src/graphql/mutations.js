@@ -50,7 +50,7 @@ export const ADD_GAME = gql`
 
 export const ADD_ORDER = gql`
   mutation addOrder(
-    $gamesArr: [Game]
+    $gamesArr: [ID]
   ) {
     addOrder(
       games: $gamesArr

@@ -55,7 +55,7 @@ const typeDefs = gql`
       category: String!
       seller: ID
     ): Game
-    addOrder(games: [Game]): Order    ## to use date, we'll nee a scalar for it
+    addOrder(gamesArr: [ID]): Order    ## to use date, we'll nee a scalar for it
     updateGame(
       id: ID!
       name: String

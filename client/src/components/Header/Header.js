@@ -1,12 +1,10 @@
 import React from "react";
-import { Navbar, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 export default function Header() {
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand>Buy some Games!!!</Navbar.Brand>
-      </Container>
-    </Navbar>
+    <Container fluid className="header">
+      <h1>Buy Some Games<img className="controller"src="./images/controller-icon.png" alt="controller"></img></h1>
+    </Container>
   );
 }

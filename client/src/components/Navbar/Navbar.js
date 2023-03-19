@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Nav, Button } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Auth from "../../auth/auth";
 import AddGame from "../addGame";

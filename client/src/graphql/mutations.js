@@ -56,7 +56,6 @@ export const ADD_ORDER = gql`
       games: $gamesArr
     ) {
       _id
-      purchaseDate
       games
     }
   }

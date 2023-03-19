@@ -1,6 +1,6 @@
 import React from "react";
 import FilterBar from "./components/FilterBar";
-import GameCard from "./components/Game";
+import GameCard from "./components/Game/Game";
 import { Col, Row } from "react-bootstrap";
 import ImageCarousel from "../../components/Carousel/Carousel";
 const images = [

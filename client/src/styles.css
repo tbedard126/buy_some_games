@@ -18,12 +18,6 @@ body {
   background-color: #6f42c1;
 }
 
-.cardbody {
-  background-color: #6f42c1;
-  color: whitesmoke;
-}
-
-
 
 
 /* Header styles */
@@ -33,7 +27,7 @@ img.controller {
 }
 
 .header {
-  background-color: #6f42c1;
+  background-color: #148c3c;
   border-bottom-style: solid;
   border-color: #150811;
 }
@@ -62,13 +56,6 @@ footer {
   transform: scale(
     1.2
   );
-}
-
-.img {
-  border: 1px solid #6f42c1;
-  border-radius: 4px;
-  padding: 5px;
-  width: 150px;
 }
 
 .img:hover {
@@ -102,6 +89,35 @@ footer {
 
 .nav-btn:hover {
   color: bisque;
+}
+
+/* Home Page Styles */
+
+.cardbody {
+  background-color: #148c3c;
+  color: #FFE4C4;
+  margin: 8px;
+  justify-content: center;
+  display: block;
+}
+
+div.card {
+  background-color: #148c3c;
+}
+
+.img {
+  border-style: solid;
+  border-color: #148c3c;
+  border-radius: 3%;
+  width: 150px;
+}
+
+.cardGameInfo {
+  text-decoration: none;
+  text-align: center;
+  color: #FFE4C4;
+  padding: 6px 12px;
+  width: 100%;
 }
 
 /* Single Game Page */

@@ -10,7 +10,7 @@ export default function Cart() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [addOrder] = useMutation(ADD_ORDER);
+  // const [addOrder] = useMutation(ADD_ORDER);
 
   const getCartItems = () => {
     const cartArray = JSON.parse(localStorage.getItem("cartItems"));

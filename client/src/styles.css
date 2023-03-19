@@ -26,10 +26,14 @@ img.controller {
   max-height: 60px;
 }
 
-.header {
+.headerCont {
   background-color: #148c3c;
   border-bottom-style: solid;
   border-color: #150811;
+}
+
+.header {
+  margin-left: 250px;
 }
 
 /* Footer Styles */
@@ -93,6 +97,23 @@ footer {
 
 /* Home Page Styles */
 
+.gamesTitle {
+  display: flex;
+  justify-content: center;
+}
+
+.cardAlign {
+  display: flex;
+  justify-content: center;
+}
+
+.cardOrg {
+  width: fit-content;
+  margin: 8px;
+  padding: 35px 8px;
+
+}
+
 .cardbody {
   background-color: #148c3c;
   color: #FFE4C4;
@@ -103,6 +124,7 @@ footer {
 
 div.card {
   background-color: #148c3c;
+
 }
 
 .img {
@@ -196,10 +218,31 @@ button.addToCart:hover {
   color: #6f42c1;
 }
 
+/* Seller Game Page */
+
+.sellerTitle {
+  margin: 8px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.sellerBtnsCont {
+  display: flex;
+  justify-content: center;
+}
+
+.deleteBtn {
+  padding: 5px 3px;
+  background-color: #150811;
+  color: #6f42c1;
+  font-weight: 700;
+}
+
 
 /* default button colors */
 .btn-primary {
-      --bs-btn-color: bisque;
+    --bs-btn-color: black;
     --bs-btn-bg: #6f42c1;
     --bs-btn-border-color: #6f42c1;
     --bs-btn-hover-color: bisque;

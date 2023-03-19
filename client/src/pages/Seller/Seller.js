@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
-import { Card, Row, Col } from "react-bootstrap";
+import { Card, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Auth from "../../auth/auth";
 import { QUERY_SELLERS_GAMES } from "../../graphql/queries";
@@ -17,7 +17,8 @@ export default function Seller() {
   const [removeGame] = useMutation(REMOVE_GAME);
   const handleRemove = (event, gameId) => {
     // event.preventDefault();
-    const { data } = removeGame({   // incomplete
+    const { data } = removeGame({
+      // incomplete
       variables: {
         id: gameId,
       },
@@ -33,33 +34,49 @@ export default function Seller() {
   return (
     <div>
       <div>
-        <h1>{Auth.getProfile().data.username}'s Games</h1>
-        <Row xs={1} sm={2} md={3} className="g-4">
+        <div className="sellerTitle">
+          {" "}
+          <h1 >
+            {Auth.getProfile().data.username}'s Games
+          </h1>
+        </div>
+
+        <Row xs={1} sm={2} md={3} className="g-4 cardAlign">
           {data.getSellersGames.games.map((game) => (
-            <Col key={game._id}>
+            <Col className="cardOrg" key={game._id}>
               <Card style={{ width: "18rem", height: "100%" }}>
-                <Card.Img
+                <img
                   className="zoom img"
                   variant="top"
                   src={game.imgUrl}
+                  alt={game.name}
                   style={{
                     height: "10rem",
                     width: "18rem",
                     objectFit: "cover",
                   }}
                 />
-                <Card.Body className="cardbody">
-                  <Card.Title>{game.name}</Card.Title>
-                  <Card.Text>{game.price}</Card.Text>
-                  <Card.Text>{game.category}</Card.Text>
-                  <div>
-                    <UpdateGame gameId={game._id} name={game.name} description={game.description} price={game.price} category={game.category}
+                <div className="cardbody">
+                  <div className="cardGameInfo">{game.name}</div>
+                  <div className="cardGameInfo">${game.price}</div>
+                  <div className="cardGameInfo">{game.category}</div>
+                  <div className="sellerBtnsCont">
+                    <UpdateGame
+                      className="m-1"
+                      gameId={game._id}
+                      name={game.name}
+                      description={game.description}
+                      price={game.price}
+                      category={game.category}
                     />
-                    <button onClick={(event) => handleRemove(event, game._id)}>
+                    <Button
+                      className="m-1 deleteBtn"
+                      onClick={(event) => handleRemove(event, game._id)}
+                    >
                       Delete Game
-                    </button>
+                    </Button>
                   </div>
-                </Card.Body>
+                </div>
               </Card>
             </Col>
           ))}

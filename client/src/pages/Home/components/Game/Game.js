@@ -12,10 +12,13 @@ export default function GameCard() {
 
   return (
     <div>
-      <h1>Games for sale!</h1>
+      <div className="gamesTitle">
+        {" "}
+        <h1>Games for sale!</h1>
+      </div>
       <Row xs={1} sm={2} md={3} className="g-4">
         {data.games.map((game) => (
-          <Col key={game._id}>
+          <Col className="cardOrg" key={game._id}>
             <Link to={`/games/${game._id}`}>
               <Card style={{ width: "18rem", height: "100%" }}>
                 <img

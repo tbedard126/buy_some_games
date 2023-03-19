@@ -27,6 +27,8 @@ const AddGame = () => {
     })
       .then(() => {
         console.log(data);
+        alert("Game Added!");
+        window.location.reload();
         handleClose();
       })
       .catch((error) => {
@@ -37,9 +39,9 @@ const AddGame = () => {
 
   return (
     <>
-      <span className="nav-btn m-2"  onClick={() => setShowModal(true)}>
+      <span className="nav-btn m-2" onClick={() => setShowModal(true)}>
         Add Game
-      </span >
+      </span>
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>

@@ -16,8 +16,8 @@ export default function Game() {
     const gameObj = {
       id: selectedGame._id,
       name: selectedGame.name,
-      price: selectedGame.price
-    }
+      price: selectedGame.price,
+    };
     if (!cartArray) {
       localStorage.setItem("cartItems", JSON.stringify([gameObj]));
     } else {
@@ -29,31 +29,45 @@ export default function Game() {
       }
       cartArray.push(gameObj);
       localStorage.setItem("cartItems", JSON.stringify(cartArray));
+      alert('Added game to cart!');
     }
   };
 
-  console.log(data);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error</p>;
 
   return (
     <Container>
-      <h1>{selectedGame.name}</h1>
+      <div className="gameTitle">
+        <h1 className="gameTitle">{selectedGame.name}</h1>
+      </div>
+
       <Row>
         <Col xs={12} md={6}>
           <Image
-            className="zoom"
+            className="zoom imgDisplay"
             src={selectedGame.imgUrl}
             alt={selectedGame.name}
             fluid
           />
-          <Button onClick={handleAdd}>Add to Cart</Button>
         </Col>
-        <Col xs={12} md={6}>
-          <div>{selectedGame.description}</div>
-          <div>{selectedGame.price}</div>
-          <div>{selectedGame.seller.username}</div>
-          <div>{selectedGame.views}</div>
+        <Col xs={12} md={6} className="gameInfo">
+          <div className="gameDescContainer">
+            <h4 className="gameDesc">Description:</h4>
+            <p className="gameDesc">{selectedGame.description}</p>
+          </div>
+          <div className="gameSaleInfo">
+            <span className="gameSaleInfo">Price: ${selectedGame.price}</span>
+            <span className="gameSaleInfo">
+              Seller: {selectedGame.seller.username}
+            </span>
+            <span className="gameSaleInfo">Views: {selectedGame.views}</span>
+          </div>
+          <div className="addCartBtn">
+            <Button className="addToCart" onClick={handleAdd}>
+              Add to Cart
+            </Button>
+          </div>
         </Col>
       </Row>
     </Container>

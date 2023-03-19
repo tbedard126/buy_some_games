@@ -3,8 +3,9 @@ import { Nav, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Auth from "../../auth/auth";
 import AddGame from "../addGame";
+import Cart from "../Cart";
 
-export default function Navbar({ currentPage, handlePageChange }) {
+export default function Navbar() {
   const handleLogout = (event) => {
     event.preventDefault();
     Auth.logout();
@@ -41,7 +42,9 @@ export default function Navbar({ currentPage, handlePageChange }) {
             </>
           )}
         </div>
-        <span className="nav-btn m-2 float-right">Cart</span>
+        <span className="nav-btn m-2 float-right">
+          <Cart />
+        </span> {/* this will become an the imported 'cart' component (button) */}
       </div>
     </Nav>
   );

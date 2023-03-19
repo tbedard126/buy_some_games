@@ -37,9 +37,9 @@ const AddGame = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={() => setShowModal(true)}>
+      <span className="nav-btn m-2"  onClick={() => setShowModal(true)}>
         Add Game
-      </Button>
+      </span >
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>

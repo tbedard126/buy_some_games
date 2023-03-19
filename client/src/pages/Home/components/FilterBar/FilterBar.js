@@ -36,7 +36,7 @@ export default function FilterBar() {
             setShowAllGames(false);
           }}
         >
-          Nin
+          Nintendo
         </Button>
         <Button
           variant="outline-dark"

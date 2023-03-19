@@ -32,6 +32,7 @@ export default function GameCard() {
                   <Card.Title>{game.name}</Card.Title>
                   <Card.Text>{game.price}</Card.Text>
                   <Card.Text>{game.category}</Card.Text>
+                  <Card.Text>{game.description}</Card.Text>
                 </Card.Body>
               </Card>
             </Link>

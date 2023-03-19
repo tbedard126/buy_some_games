@@ -1,46 +1,87 @@
+import { useQuery } from "@apollo/client";
 import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
+import { QUERY_GAMES_BY_CAT } from "../../../../graphql/queries";
+import { Link } from "react-router-dom";
 
 export default function FilterBar() {
-  // buttons to pull from db
-  const categories = [
-    "All Games",
-    "Super Nintendo",
-    "Nintendo",
-    "Nintendo 64",
-    "Sega Genesis",
-  ];
+  const [category, setCategory] = useState("");
 
-  // arrange categories
-  const sortChoices = ["Sort by Name", "Sort by Price", "Sort By Popular"];
+  const { loading, error, data } = useQuery(QUERY_GAMES_BY_CAT, {
+    variables: { category },
+  });
+
+  const handleCategoryClick = (cat) => {
+    setCategory(cat);
+  };
 
   return (
     <>
       <div className="d-grid gap-2">
-        <Button  variant="outline-dark">All Games</Button>
-        <Button  variant="outline-dark">Nintendo</Button>
-        <Button  variant="outline-dark">Super Nintendo</Button>
-        <Button  variant="outline-dark">Nintendo 64</Button>
-        <Button  variant="outline-dark">Sega Genesis</Button>
+        <Button variant="outline-dark" onClick={() => handleCategoryClick("")}>
+          All Games
+        </Button>
+        <Button
+          variant="outline-dark"
+          onClick={() => handleCategoryClick("Nintendo")}
+        >
+          Nintendo
+        </Button>
+        <Button
+          variant="outline-dark"
+          onClick={() => handleCategoryClick("Super Nintendo")}
+        >
+          Super Nintendo
+        </Button>
+        <Button
+          variant="outline-dark"
+          onClick={() => handleCategoryClick("Nintendo 64")}
+        >
+          Nintendo 64
+        </Button>
+        <Button
+          variant="outline-dark"
+          onClick={() => handleCategoryClick("Sega Genesis")}
+        >
+          Sega Genesis
+        </Button>
       </div>
       <div className="d-grid gap-2">
-        <Button  variant="outline-dark">Sort by Name</Button>
-        <Button  variant="outline-dark">Sort by Price</Button>
-        <Button  variant="outline-dark">Sort by Popular</Button>
+        <Button variant="outline-dark">Sort by Name</Button>
+        <Button variant="outline-dark">Sort by Price</Button>
+        <Button variant="outline-dark">Sort by Popular</Button>
       </div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>Error: {error.message}</p>
+      ) : (
+        <Row xs={1} sm={2} md={3} className="g-4">
+          {data.gamesByCtgy.map((game) => (
+            <Col key={game._id}>
+              <Link to={`/games/${game._id}`}>
+                <Card style={{ width: "18rem", height: "100%" }}>
+                  <Card.Img
+                    className="zoom img"
+                    variant="top"
+                    src={game.imgUrl}
+                    style={{
+                      height: "10rem",
+                      width: "18rem",
+                      objectFit: "cover",
+                    }}
+                  />
+                  <Card.Body className="cardbody">
+                    <Card.Title>{game.name}</Card.Title>
+                    <Card.Text>{game.price}</Card.Text>
+                    <Card.Text>{game.category}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+        </Row>
+      )}
     </>
-
-    // <div>
-    //   <ul id="categories">
-    //     {categories.map((cat) => (
-    //       <li>{cat}</li>
-    //     ))}
-    //   </ul>
-    //   <ul id="sortChoices">
-    //     {sortChoices.map((sort) => (
-    //       <li>{sort}</li>
-    //     ))}
-    //   </ul>
-    // </div>
   );
 }

@@ -16,20 +16,16 @@ const typeDefs = gql`
     _id: ID!
     username: String!
     email: String!
- #    password: String!      # is this supposed to be in here? #
+ #    password: String!      # don't think this is needed #
     games: [Game]
   }
 
-  #  type Order {
-  #    _id: ID!
-  #  #  purchaseDate: Date     ## this needs a scalar to use this type
-  #    games: [Game]
-  #  }
 
   ####### Stripe
-  type Checkout {
-    session: ID
-  }
+  #  type Checkout {
+  #    session: ID
+  #  }
+
   ####### JWT
   type Auth {
     token: ID
@@ -42,7 +38,6 @@ const typeDefs = gql`
     gamesByCtgy(category: String): [Game]
     game(id: ID!): Game
     getSellersGames(id: ID!): User
-    ### GET ALL ORDERS (once that function is written) ###
   }
 
   type Mutation {
@@ -55,7 +50,6 @@ const typeDefs = gql`
       category: String!
       seller: ID
     ): Game
-  #  addOrder(gamesArr: [ID]): Order    ## to use date, we'll nee a scalar for it
     updateGame(
       id: ID!
       name: String
@@ -67,10 +61,6 @@ const typeDefs = gql`
     incrementGameViews(id: ID!, currViews: Int): Game
     removeGame(id: ID!): Game
     login(email: String!, password: String!): Auth
-
-  ## still to add:
-  #    increment views (on a game)
-
   }
 `;
 

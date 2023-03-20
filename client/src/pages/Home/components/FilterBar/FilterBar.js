@@ -4,9 +4,9 @@ import { Button, Card, Col, Row } from "react-bootstrap";
 import { QUERY_GAMES_BY_CAT } from "../../../../graphql/queries";
 import { Link } from "react-router-dom";
 
-export default function FilterBar() {
+export default function FilterBar({ setShowAllGames }) {
   const [category, setCategory] = useState("");
-  const [setShowGames, setShowAllGames] = useState(false);
+  // const [setShowGames, setShowAllGames] = useState(false);
 
   const { loading, error, data } = useQuery(QUERY_GAMES_BY_CAT, {
     variables: { category },

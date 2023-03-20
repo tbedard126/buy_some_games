@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_GAMES } from "../../../../graphql/queries";
 
-export default function GameCard() {
-  const { loading, error, data } = useQuery(QUERY_ALL_GAMES);
+export default function GameCard({ data }) {
+  // const { loading, error, data } = useQuery(QUERY_ALL_GAMES);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{`${error}`}</p>;
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>{`${error}`}</p>;
 
   return (
     <div>

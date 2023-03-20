@@ -3,6 +3,9 @@ import FilterBar from "./components/FilterBar";
 import GameCard from "./components/Game/Game";
 import { Col, Row } from "react-bootstrap";
 import ImageCarousel from "../../components/Carousel/Carousel";
+import { useQuery } from "@apollo/client";
+import { QUERY_ALL_GAMES } from "../../graphql/queries";
+
 const images = [
   {
     src: "/images/Snes.jpg",
@@ -23,7 +26,12 @@ const images = [
 ];
 
 const Home = () => {
-  const [showAllGames, setShowAllGames] = useState(false);
+  const { loading, error, data } = useQuery(QUERY_ALL_GAMES);
+  const [showAllGames, setShowAllGames] = useState(true);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{`${error}`}</p>;
+
   return (
     <>
       <Row>
@@ -31,9 +39,13 @@ const Home = () => {
         <Col md={2} sticky="top">
           <FilterBar setShowAllGames={setShowAllGames} />
         </Col>
-        <Col md={10}>
-          <GameCard setShowAllGames={setShowAllGames} />
-        </Col>
+        {showAllGames ? (
+          <Col md={10}>
+            <GameCard data={data} />
+          </Col>
+        ) : (
+          <></>
+        )}
       </Row>
     </>
   );

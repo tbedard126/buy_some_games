@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { Card, Row, Col, Button } from "react-bootstrap";
@@ -16,17 +16,14 @@ export default function Seller() {
 
   const [removeGame] = useMutation(REMOVE_GAME);
   const handleRemove = (event, gameId) => {
-    // event.preventDefault();
-    const { data } = removeGame({
-      // incomplete
-      variables: {
-        id: gameId,
-      },
-      // update: (cache, { data: { id } }) =>  {
-      //   cache.modify()
-      // }};
-    });
-    window.location.reload();
+    if (window.confirm('You sure you want to unlist this?')) {
+      const { data } = removeGame({
+        variables: {
+          id: gameId,
+        },
+      });
+      window.location.reload();
+    }
   };
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{`${error}`}</p>;
@@ -45,17 +42,19 @@ export default function Seller() {
           {data.getSellersGames.games.map((game) => (
             <Col className="cardOrg" key={game._id}>
               <Card style={{ width: "18rem", height: "100%" }}>
-                <img
-                  className="zoom img"
-                  variant="top"
-                  src={game.imgUrl}
-                  alt={game.name}
-                  style={{
-                    height: "10rem",
-                    width: "18rem",
-                    objectFit: "cover",
-                  }}
-                />
+                <Link to={`/games/${game._id}`}>
+                  <img
+                    className="zoom img"
+                    variant="top"
+                    src={game.imgUrl}
+                    alt={game.name}
+                    style={{
+                      height: "10rem",
+                      width: "18rem",
+                      objectFit: "cover",
+                    }}
+                  />
+                </Link>
                 <div className="cardbody">
                   <div className="cardGameInfo">{game.name}</div>
                   <div className="cardGameInfo">${game.price}</div>

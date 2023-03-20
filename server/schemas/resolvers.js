@@ -9,8 +9,8 @@ const resolvers = {
     games: async () => {
       try {
         return await Game.find({}).populate("seller");
-      } catch (e) {
-        console.log(`Error @ 'game' query: ${e}`);
+      } catch (error) {
+        console.log(`Error @ 'game' query: ${error}`);
       }
     },
     // get ALL games by category
@@ -72,6 +72,14 @@ const resolvers = {
       throw new AuthenticationError(
         "You need to be logged in to change your game's data"
       );
+    },
+
+    incrementGameViews: async (parent, { id, currViews}) => {
+      try {
+        return await Game.findOneAndUpdate({ _id: id }, {views: (currViews + 1)}, { new: true });
+      } catch(error) {
+        console.log(`Error @ 'incrementGameView' query: ${error}`);
+      }
     },
 
     // DELETE one game (also remove it from User's games array)

@@ -89,6 +89,26 @@ export const UPDATE_GAME = gql`
   }
 `;
 
+export const INCREMENT_GAME_VIEWS = gql`
+  mutation incrementGameViews(
+    $id: ID!
+    $currViews: Int
+    ) {
+    incrementGameViews(
+      id: $id
+      currViews: $currViews
+    ) {
+      _id
+       name
+      description
+      category
+      price
+      imgUrl
+      views
+    }
+  }
+`;
+
 export const REMOVE_GAME = gql`
   mutation removeGame($id: ID!) {
     removeGame(id: $id) {

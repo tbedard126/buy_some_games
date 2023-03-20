@@ -43,6 +43,13 @@ export default function UpdateGame({ gameId, name, description, price, category 
       });
   };
 
+  const enableButton = () => {
+    const updateBtn = document.getElementById('confirm-update-btn');
+    if (updateBtn.disabled) {
+      updateBtn.disabled = false;
+    }
+  }
+
   return (
     <>
       <Button variant="primary" onClick={() => setShowModal(true)}>
@@ -57,7 +64,7 @@ export default function UpdateGame({ gameId, name, description, price, category 
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="name">
               <Form.Label>Name</Form.Label>
-              <Form.Control type="text" defaultValue={name} placeholder="Enter game name" />
+              <Form.Control type="text" defaultValue={name} placeholder="Enter game name" onChange={enableButton} />
             </Form.Group>
 
             <Form.Group controlId="description">
@@ -67,6 +74,7 @@ export default function UpdateGame({ gameId, name, description, price, category 
                 rows={3}
                 defaultValue={description}
                 placeholder="Enter game description"
+                onChange={enableButton}
               />
             </Form.Group>
 
@@ -77,16 +85,13 @@ export default function UpdateGame({ gameId, name, description, price, category 
                 step="0.01"
                 defaultValue={price}
                 placeholder="Enter game price"
+                onChange={enableButton}
               />
             </Form.Group>
 
             <Form.Group controlId="category">
               <Form.Label>Category</Form.Label>
-              <Form.Control as="select">
-                {/* <option>Super Nintendo</option>
-                <option>Nintendo 64</option>
-                <option>Sega Genesis</option>
-                <option>Nintendo</option> */}
+              <Form.Control as="select" onChange={enableButton}>
                 {selectConsoles.map((option) => {
                   if (option === category) {
                     return <option selected>{option}</option>
@@ -97,7 +102,7 @@ export default function UpdateGame({ gameId, name, description, price, category 
               </Form.Control>
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button id="confirm-update-btn" variant="primary" type="submit" disabled>
               Update Game
             </Button>
           </Form>

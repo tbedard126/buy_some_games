@@ -26,7 +26,6 @@ const AddGame = () => {
       },
     })
       .then(() => {
-        console.log(data);
         alert("Game Added!");
         window.location.reload();
         handleClose();

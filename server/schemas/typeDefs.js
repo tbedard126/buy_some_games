@@ -64,6 +64,7 @@ const typeDefs = gql`
       price: Float
       category: String
     ): Game
+    incrementGameViews(id: ID!, currViews: Int): Game
     removeGame(id: ID!): Game
     login(email: String!, password: String!): Auth
 

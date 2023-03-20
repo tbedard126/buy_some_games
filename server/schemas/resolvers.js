@@ -74,7 +74,7 @@ const resolvers = {
       );
     },
 
-    incrementGameView: async (parent, { id, currViews}) => {
+    incrementGameViews: async (parent, { id, currViews}) => {
       try {
         return await Game.findOneAndUpdate({ _id: id }, {views: (currViews + 1)}, { new: true });
       } catch(error) {

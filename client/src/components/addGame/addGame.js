@@ -16,25 +16,34 @@ const AddGame = () => {
     const description = event.target.description.value;
     const price = parseFloat(event.target.price.value);
     const category = event.target.category.value;
-    const { data } = addGame({
-      variables: {
-        name: name,
-        description: description,
-        price: price,
-        category: category,
-        seller: Auth.getProfile().data._id,
-      },
-    })
-      .then(() => {
-        console.log(data);
-        alert("Game Added!");
-        window.location.reload();
-        handleClose();
+    if (name && category && price >= 1) {
+      const { data } = addGame({
+        variables: {
+          name: name,
+          description: description,
+          price: price,
+          category: category,
+          seller: Auth.getProfile().data._id,
+        },
       })
-      .catch((error) => {
-        console.log(data);
-        console.error(error);
-      });
+        .then(() => {
+          console.log(data);
+          alert("Game Added!");
+          window.location.reload();
+          handleClose();
+        })
+        .catch((error) => {
+          console.log(data);
+          console.error(error);
+        });
+    } else {
+      document.getElementById("errorMsg").innerText =
+        "Game needs a Name and a Price.";
+    }
+  };
+
+  const handleChange = () => {
+    document.getElementById("errorMsg").innerText = "";
   };
 
   return (
@@ -51,7 +60,11 @@ const AddGame = () => {
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="name">
               <Form.Label>Name</Form.Label>
-              <Form.Control type="text" placeholder="Enter game name" />
+              <Form.Control
+                type="text"
+                placeholder="Enter game name"
+                onChange={handleChange}
+              />
             </Form.Group>
 
             <Form.Group controlId="description">
@@ -69,6 +82,7 @@ const AddGame = () => {
                 type="number"
                 step="0.01"
                 placeholder="Enter game price"
+                onChange={handleChange}
               />
             </Form.Group>
 
@@ -86,6 +100,7 @@ const AddGame = () => {
               Add Game
             </Button>
           </Form>
+          <Modal.Footer id="errorMsg" className="text-danger"></Modal.Footer>
         </Modal.Body>
       </Modal>
     </>

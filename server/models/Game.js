@@ -33,9 +33,8 @@ const gameSchema = new Schema({
     required: true,
   },
   seller: {
-    type: Schema.Types.ObjectId, // will change this to ObjectID
+    type: Schema.Types.ObjectId,
     ref: "User",
-    // type: String
   },
 });
 

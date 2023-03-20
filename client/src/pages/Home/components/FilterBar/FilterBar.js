@@ -4,9 +4,9 @@ import { Button, Card, Col, Row } from "react-bootstrap";
 import { QUERY_GAMES_BY_CAT } from "../../../../graphql/queries";
 import { Link } from "react-router-dom";
 
-export default function FilterBar() {
-  const [category, setCategory] = useState("");
-  const [setShowGames, setShowAllGames] = useState(false);
+export default function FilterBar({ setShowAllGames }) {
+  const [category, setCategory] = useState();
+  // const [setShowGames, setShowAllGames] = useState(false);
 
   const { loading, error, data } = useQuery(QUERY_GAMES_BY_CAT, {
     variables: { category },
@@ -57,11 +57,11 @@ export default function FilterBar() {
           Sega Genesis
         </Button>
       </div>
-      <div className="d-grid gap-2">
+      {/* <div className="d-grid gap-2">
         <Button variant="outline-dark">Sort by Name</Button>
         <Button variant="outline-dark">Sort by Price</Button>
         <Button variant="outline-dark">Sort by Popular</Button>
-      </div>
+      </div> */}
       {loading ? (
         <p>Loading...</p>
       ) : error ? (

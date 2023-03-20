@@ -5,8 +5,8 @@ import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ALL_GAMES } from "../../../../graphql/queries";
 import { INCREMENT_GAME_VIEWS } from "../../../../graphql/mutations";
 
-export default function GameCard() {
-  const { loading, error, data } = useQuery(QUERY_ALL_GAMES);
+export default function GameCard({ data }) {
+  // const { loading, error, data } = useQuery(QUERY_ALL_GAMES);
   const [incrementGameViews] = useMutation(INCREMENT_GAME_VIEWS);
 
   const clickAddView = (event) => {

@@ -63,8 +63,3 @@ export const QUERY_SELLERS_GAMES = gql`
     }
   }
 `;
-
-// still needed:
-// games by user (seller -- could either query the user and populate their games,
-//                    OR query games passing in the user
-// orders?

@@ -32,7 +32,6 @@ export const ADD_GAME = gql`
     $price: Float!
     $category: String!
     $seller: ID 
-#    $seller: String ## this will need to change -- we'll grab the users ObjectID from context
   ) {
     addGame(
       name: $name
@@ -40,26 +39,13 @@ export const ADD_GAME = gql`
       imgUrl: $imgUrl
       price: $price
       category: $category
-      seller: $seller ## this will need to change --  we'll grab the users ObjectID from context
+      seller: $seller
     ) {
       _id
       name
     }
   }
 `;
-
-// export const ADD_ORDER = gql`
-//   mutation addOrder(
-//     $gamesArr: [ID]
-//   ) {
-//     addOrder(
-//       games: $gamesArr
-//     ) {
-//       _id
-//       games
-//     }
-//   }
-// `;
 
 export const UPDATE_GAME = gql`
   mutation updateGame(
@@ -116,7 +102,3 @@ export const REMOVE_GAME = gql`
     }
   }
 `;
-
-// still needed:
-//  incremeent games views
-

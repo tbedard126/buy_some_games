@@ -102,6 +102,10 @@ footer {
   justify-content: center;
 }
 
+.cardsCont {
+  width: 100vw;
+}
+
 .cardAlign {
   display: flex;
   justify-content: center;
@@ -122,9 +126,8 @@ footer {
   display: block;
 }
 
-div.card {
+.card {
   background-color: #148c3c;
-
 }
 
 .img {
@@ -239,6 +242,52 @@ button.addToCart:hover {
   font-weight: 700;
 }
 
+/* Login/Signup Pages */
+
+.loginCont {
+  display: flex;
+  justify-content: center;
+}
+
+.loginCont > main {
+  margin: 8px;
+  padding: 6px 12px;
+  
+}
+
+.formCard {
+  background-color: #148c3c;
+  justify-content: center;
+  width: 500px;
+  border-style: solid;
+}
+
+
+
+.formCont {
+  display: flex;
+  justify-content: center;
+}
+
+.inputCont {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.form-input {
+  margin: 8px;
+  padding: 6px 12px;
+}
+.loginSubmit {
+  display: flex;
+  justify-content: center;
+}
+
+.loginSubmit > button {
+  margin: 8px;
+  padding: 6px 12px;
+}
 
 /* default button colors */
 .btn-primary {

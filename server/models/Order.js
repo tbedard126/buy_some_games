@@ -1,20 +1,22 @@
-const mongoose = require('mongoose');
+// This is not yet implemented, but we may want to use this in the future
 
-const { Schema } = mongoose;
+// const mongoose = require('mongoose');
 
-const orderSchema = new Schema({
-  // purchaseDate: {
-  //   type: Date,
-  //   default: Date.now
-  // },
-  games: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Game'
-    }
-  ]
-});
+// const { Schema } = mongoose;
 
-const Order = mongoose.model('Order', orderSchema);
+// const orderSchema = new Schema({
+//   // purchaseDate: {
+//   //   type: Date,
+//   //   default: Date.now
+//   // },
+//   games: [
+//     {
+//       type: Schema.Types.ObjectId,
+//       ref: 'Game'
+//     }
+//   ]
+// });
 
-module.exports = Order;
+// const Order = mongoose.model('Order', orderSchema);
+
+// module.exports = Order;

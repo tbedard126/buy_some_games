@@ -1,12 +1,13 @@
 import decode from 'jwt-decode';
 
 class AuthService {
+  // Grabs data for context
   getProfile() {
     return decode(this.getToken());
   }
 
   loggedIn() {
-    // Searches for an validates token
+    // Searches for and validates token
     const token = this.getToken();
     return !!token && !this.isTokenExpired(token);
   }
@@ -23,14 +24,14 @@ class AuthService {
   }
 
   getToken() {
-    // Wipe JWT
+    // Grab JWT
     return localStorage.getItem('id_token');
   }
 
   login(idToken) {
     // Put JWT in localStorage
     localStorage.setItem('id_token', idToken);
-    // Automatically redirects to home (do we want to actually go to login?)
+    // Automatically redirects to home
     window.location.assign('/');
   }
 

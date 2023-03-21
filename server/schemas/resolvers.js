@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Game, Order } = require("../models"); // will eventually import Order as well
+const { User, Game } = require("../models");
 const { signToken } = require("../utils/auth");
 // const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');    // will use this if we get to Stripe
 
@@ -25,9 +25,6 @@ const resolvers = {
     getSellersGames: async (parent, { id }) => {
       return await User.findById(id).populate("games");
     },
-    // **nice to have**
-    //    GET all orders (by one user, buyer OR seller -- so this may need to be 2 separate routes),
-    //    get all users (sellers -- a new page, where they can sort by rating),
   },
   Mutation: {
     // CREATE one user -- currently verbatim from example
@@ -39,7 +36,6 @@ const resolvers = {
     },
     // CREATE one game (will need a form for this -- also updates the seller's games array)
     addGame: async (parent, args, context) => {
-      console.log('args:' + args, + '.. context: ' + context.user._id );
       if (context.user) {
         const game = await Game.create({ ...args });
         console.log(game);
@@ -53,15 +49,6 @@ const resolvers = {
       }
       throw new AuthenticationError('Only sellers can list games; login or sign-up first!');
     },
-    // CREATE ORDER (from cart, which holds array of games (id) to buy
-    // addOrder: async (parent, { gamesArr }, context) => {
-    //   try {
-    //     console.log(args);
-    //     return await Order.create({ ...args });
-    //   } catch (e) {
-    //     console.log(`Error @ 'game' query: ${e}`);
-    //   }
-    // },
     // UPDATE one game by ID
     updateGame: async (parent, args, context) => {
       if (context.user) {
@@ -73,7 +60,7 @@ const resolvers = {
         "You need to be logged in to change your game's data"
       );
     },
-
+    // UPDATE game by ID -- only for incrementing its 'views' field by one
     incrementGameViews: async (parent, { id, currViews}) => {
       try {
         return await Game.findOneAndUpdate({ _id: id }, {views: (currViews + 1)}, { new: true });
@@ -81,7 +68,6 @@ const resolvers = {
         console.log(`Error @ 'incrementGameView' query: ${error}`);
       }
     },
-
     // DELETE one game (also remove it from User's games array)
     removeGame: async (parent, { id }, context) => {
       if (context.user) {
@@ -98,9 +84,6 @@ const resolvers = {
         "You need to be logged in to unlist your game"
       );
     },
-
-    // DELETE one user (i.e. delete account -- should also 'cascade' delete the games in the assoc. array),
-
     // LOGIN (i.e. find one user and give JWT) -- keeping this one verbatim from the example
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });

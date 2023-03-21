@@ -37,6 +37,7 @@ Upon visiting the site, you will land on the 'home' page where all of the games 
 Link to live site: https://calm-peak-12756.herokuapp.com/
   
 Screenshot(s):
+![Home](./client/public/images/mockups/home-page.png?raw=true "Home page (view listed games)")
 ![Seller](./client/public/images/mockups/seller-page.png?raw=true "Seller profile page, regular screen")
 ![Seller Mobile](./client/public/images/mockups/seller-page-mobile.png?raw=true "Seller profile page, narrow screen")
 ![Game details](./client/public/images/mockups/one-game-page.png?raw=true "One game (details) page")
